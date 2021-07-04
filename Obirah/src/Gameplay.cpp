@@ -1,191 +1,134 @@
-#include "../include/Gameplay.h"
-#include "../include/Terrain.h"
-#include "../include/Player.h"
+#include "../includes/Gameplay.h"
+#include "../includes/Gamespace.h"
 #include <iostream>
-#include <iomanip>
 #include <conio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
-void Input(char* buff, const uint16_t inputLength)
-{
-    using namespace std;
-    uint16_t inputCounter = 0;
-
-    do {
-        buff[inputCounter] = tolower(getch());
-        if (buff[inputCounter] != 8) {
-            cout << buff[inputCounter];
-            ++inputCounter;
-        } else if (buff[inputCounter] == 8 && inputCounter > 0) {
-            --inputCounter;
-            buff[inputCounter] = ' ';
-            cout << '\b' << ' ' << '\b';
-            continue;
-        }
-    } while (buff[inputCounter - 1] != ' ' && buff[inputCounter - 1] != 13 && inputCounter < inputLength - 1);
-    if (buff[inputCounter - 1] != ' ' || buff[inputCounter - 1] != 13) {
-        --inputCounter;
-    }
-    buff[inputCounter] = '\0';
+void worldFrame (Gamespace& gamespace) {
+    clear_screen ();
+    npc_move (gamespace);
+    gamespace.draw_world ();
 }
 
-e_Commands PlayerInput(Player* character, Terrain* gamespace)
+void clear_screen (void)
 {
-    const uint16_t inputLength = 30;
-    char input[inputLength];
-    e_Commands command;
+    system ("cls");
+}
+
+void npc_move (Gamespace& gamespace)
+{
+    // Initialize random seed
+    srand (time(NULL));
+    int random_number = 0;
+
+    // Go through the NPCs
+    for (int i = 0; i < gamespace.get_number_of_npcs(); ++i) {
+        NPChar dummy = gamespace.get_NPC (i);
+        // Check if the NPC is engaged
+        if (dummy.get_engaged_flag()) {
+            continue;
+        }
+
+        // Roll random number from 1 to 10 to know whether to move
+        random_number = rand() % 10 + 1;
+
+        if (random_number != 3) {
+            continue;
+        }
+        // Roll a random direction
+        uint16_t direction = rand() % 4;
+        switch (direction) {
+            case D_UP:
+                // Check if there is an EMPTY space for the NPC to move to
+                if (gamespace.get_map_tile((dummy.get_position_x() - 1) * gamespace.get_map_width() + dummy.get_position_y()) != EMPTY) {
+                    return;
+                } else {
+                    // Set the occupied tile to EMPTY
+                    gamespace.set_tile (dummy.get_position_x() * gamespace.get_map_width() + dummy.get_position_y(), EMPTY);
+                    // Move the NPC's coordinate
+                    dummy.set_position_x (dummy.get_position_x() - 1);
+                    // Save the NPC
+                    gamespace.set_NPC (&dummy, i);
+                }
+                break;
+            case D_LEFT:
+                // Check if there is an EMPTY space for the NPC to move to
+                if (gamespace.get_map_tile(dummy.get_position_x() * gamespace.get_map_width() + dummy.get_position_y() - 1) != EMPTY) {
+                    return;
+                } else {
+                    // Set the occupied tile to EMPTY
+                    gamespace.set_tile (dummy.get_position_x() * gamespace.get_map_width() + dummy.get_position_y(), EMPTY);
+                    // Move the NPC's coordinate
+                    dummy.set_position_y (dummy.get_position_y() - 1);
+                    // Save the NPC
+                    gamespace.set_NPC (&dummy, i);
+                }
+                break;
+            case D_DOWN:
+                // Check if there is an EMPTY space for the NPC to move to
+                if (gamespace.get_map_tile((dummy.get_position_x() + 1) * gamespace.get_map_width() + dummy.get_position_y()) != EMPTY) {
+                    return;
+                } else {
+                    // Set the occupied tile to EMPTY
+                    gamespace.set_tile (dummy.get_position_x() * gamespace.get_map_width() + dummy.get_position_y(), EMPTY);
+                    // Move the NPC's coordinate
+                    dummy.set_position_x (dummy.get_position_x() + 1);
+                    // Save the NPC
+                    gamespace.set_NPC (&dummy, i);
+                }
+                break;
+            case D_RIGHT:
+                // Check if there is an EMPTY space for the NPC to move to
+                if (gamespace.get_map_tile(dummy.get_position_x() * gamespace.get_map_width() + dummy.get_position_y() + 1) != EMPTY) {
+                    return;
+                } else {
+                    // Set the occupied tile to EMPTY
+                    gamespace.set_tile (dummy.get_position_x() * gamespace.get_map_width() + dummy.get_position_y(), EMPTY);
+                    // Move the NPC's coordinate
+                    dummy.set_position_y (dummy.get_position_y() + 1);
+                    // Save the NPC
+                    gamespace.set_NPC (&dummy, i);
+                }
+                break;
+            default:
+                std::cerr << "Unknown behaviour" << std::endl;
+                break;
+        }
+    }
+}
+
+e_Commands PlayerInput(void)
+{
+    e_Commands command = INVALID;
+    char input;
 
     do {
-        Input(input, inputLength);
+        input = tolower (getch());
         command = ParseInput(input);
-        if (command != INVALID) {
-            // Clear the console (ON WINDOWS MACHINES)
-            system("cls");
-        }
-        HandleInput(command, character, gamespace);
     } while (command == INVALID);
 
     if (command == EXIT) {
         return command;
     }
 
-    gamespace->Draw(character);
-
     return command;
 }
 
-void HandleInput(e_Commands command, Player* character, Terrain* gamespace)
+e_Commands ParseInput (char input)
 {
-    using namespace std;
-
-    switch (command) {
-        case INVALID:
-            cout << endl << "INVALID COMMAND" << endl;
-            break;
-        case UP:
-            {
-                if (!CheckValidUpMove(character, gamespace)) {
-                    break;
-                }
-                uint32_t tilePosition = character->PositionY() * gamespace->Width() + character->PositionX();
-                gamespace->ChangeTile(tilePosition, Terrain::EMPTY);
-                character->MoveUp();
-                break;
-            }
-        case LEFT:
-            {
-                if (!CheckValidLeftMove(character, gamespace)) {
-                    break;
-                }
-                uint32_t tilePosition = character->PositionY() * gamespace->Width() + character->PositionX();
-                gamespace->ChangeTile(tilePosition, Terrain::EMPTY);
-                character->MoveLeft();
-                break;
-            }
-        case DOWN:
-            {
-                if (!CheckValidDownMove(character, gamespace)) {
-                    break;
-                }
-                uint32_t tilePosition = character->PositionY() * gamespace->Width() + character->PositionX();
-                gamespace->ChangeTile(tilePosition, Terrain::EMPTY);
-                character->MoveDown();
-                break;
-            }
-        case RIGHT:
-            {
-                if (!CheckValidRightMove(character, gamespace)) {
-                    break;
-                }
-                uint32_t tilePosition = character->PositionY() * gamespace->Width() + character->PositionX();
-                gamespace->ChangeTile(tilePosition, Terrain::EMPTY);
-                character->MoveRight();
-                break;
-            }
-        case EXIT:
-            break;
+    switch (input) {
+        case 'w':
+            return UP;
+        case 'a':
+            return LEFT;
+        case 's':
+            return DOWN;
+        case 'd':
+            return RIGHT;
+        case 'q':
+            return EXIT;
+        default:
+            return INVALID;
     }
-    // TODO: Handle player status (is he dead or what?)
-}
-
-e_Commands ParseInput (char* input)
-{
-    if (!strcmp(input, "w")) {
-        return UP;
-    } else if (!strcmp(input, "a")) {
-        return LEFT;
-    } else if (!strcmp(input, "s")) {
-        return DOWN;
-    } else if (!strcmp(input, "d")) {
-        return RIGHT;
-    } else if (!strcmp(input, "exit")) {
-        return EXIT;
-    } else {
-        return INVALID;
-    }
-}
-
-bool CheckValidUpMove (Player* character, Terrain* gamespace)
-{
-    uint16_t tilePosition = (character->PositionY() - 1) * gamespace->Width() + character->PositionX();
-
-    return CheckMove(gamespace, tilePosition);
-}
-
-bool CheckValidLeftMove (Player* character, Terrain* gamespace)
-{
-    uint16_t tilePosition = character->PositionY() * gamespace->Width() + character->PositionX() - 1;
-
-    return CheckMove(gamespace, tilePosition);
-}
-
-bool CheckValidDownMove (Player* character, Terrain* gamespace)
-{
-    uint16_t tilePosition = (character->PositionY() + 1) * gamespace->Width() + character->PositionX();
-
-    return CheckMove(gamespace, tilePosition);
-}
-
-bool CheckValidRightMove (Player* character, Terrain* gamespace)
-{
-    uint16_t tilePosition = character->PositionY() * gamespace->Width() + character->PositionX() + 1;
-
-    return CheckMove(gamespace, tilePosition);
-}
-
-bool CheckMove (Terrain* gamespace, uint16_t tilePosition)
-{
-    using namespace std;
-    switch (gamespace->Tile(tilePosition)){
-        case Terrain::NPC:
-            cout << "NPC is in the way." << endl;
-            return false;
-            break;
-        case Terrain::DOOR:
-            cout << "A door is in the way." << endl;
-            return false;
-            break;
-        case Terrain::GATE:
-            cout << "A gate is in the way." << endl;
-            return false;
-            break;
-        case Terrain::TREE:
-            cout << "A tree is in the way." << endl;
-            return false;
-            break;
-        case Terrain::BUSH:
-            cout << "A lovely flowery bush is in the way." << endl;
-            return false;
-            break;
-        case Terrain::WALL:
-            cout << "A wall is in the way." << endl;
-            return false;
-            break;
-        case Terrain::DOWNWALL:
-            cout << "A wall is in the way." << endl;
-            return false;
-            break;
-    }
-    return true;
 }

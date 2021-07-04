@@ -1,31 +1,21 @@
-//#include "includes/Gameplay.h"
-//#include <iostream>
-
-//#include "includes/Terrain.h"
+#include "includes/Gameplay.h"
+#include "includes/Gamespace.h"
+#include <iostream>
 
 using namespace std;
 
-int main()
+int main ()
 {
-//    e_Commands inputCommand = INVALID;
-//    static Player character;
-//    static Terrain gamespace (&character);
+    e_Commands inputCommand = INVALID;
+    // Create the world
+    static Gamespace gamespace;
 
-//    character.IncreaseAwareness (5);
-
-//    gamespace.Draw (&character);
-//    while (inputCommand != EXIT) {
-        //worldFrame (&gamespace);
-//        inputCommand = PlayerInput (&character, &gamespace);
-//    }
-
-//    Terrain debugLevel;
-//    debugLevel.CreateLevel();
-//
-//    Player char1;
-//
-//    char1.IncreaseAwareness();
-//    debugLevel.Draw(char1.Awareness(), &char1);
+    while (inputCommand != EXIT) {
+        // The world ticks once
+        worldFrame (gamespace);
+        // Take an input from the player
+        inputCommand = PlayerInput ();
+    }
 
     return 0;
 }

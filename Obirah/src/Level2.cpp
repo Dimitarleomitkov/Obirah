@@ -2,7 +2,7 @@
 #include "../includes/Terrain.h"
 #include "../includes/Npc.h"
 
-void CreateLevel1 (Gamespace& gamespace)
+void CreateLevel2 (Gamespace& gamespace)
 {
     // Set the height and width for the level
     gamespace.set_map_width (12);

@@ -1,8 +1,7 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
-#include "Player.h"
-#include "Terrain.h"
+#include "Gamespace.h"
 
 enum e_Commands {
     INVALID = 0,
@@ -13,14 +12,17 @@ enum e_Commands {
     RIGHT = 5
 };
 
-void Input (char* buff, const uint16_t inputLength);
-e_Commands PlayerInput (Player* character, Terrain* gamespace);
-void HandleInput (e_Commands command, Player* character, Terrain* gamespace);
-bool CheckValidUpMove (Player* character, Terrain* gamespace);
-bool CheckValidLeftMove (Player* character, Terrain* gamespace);
-bool CheckValidDownMove (Player* character, Terrain* gamespace);
-bool CheckValidRightMove (Player* character, Terrain* gamespace);
-bool CheckMove (Terrain* gamespace, uint16_t tilePosition);
-e_Commands ParseInput (char* input);
+enum e_Directions {
+    D_UP = 0,
+    D_LEFT = 1,
+    D_DOWN = 2,
+    D_RIGHT = 3
+};
+
+void clear_screen (void);
+void worldFrame (Gamespace& gamespace);
+void npc_move (Gamespace& gamespace);
+e_Commands PlayerInput (void);
+e_Commands ParseInput (char input);
 
 #endif // GAMEPLAY_H
