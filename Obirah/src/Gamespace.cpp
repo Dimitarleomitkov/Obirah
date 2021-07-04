@@ -84,6 +84,9 @@ void Gamespace::draw_world (void)
                 case BUSH:
                     std::cout << "*";
                     break;
+                case ROAD:
+                    std::cout << "H";
+                    break;
                 case WALL:
                     std::cout << "|";
                     break;
@@ -99,6 +102,26 @@ void Gamespace::draw_world (void)
             }
         }
         std::cout << std::endl;
+    }
+}
+
+void Gamespace::despawn_npcs (void)
+{
+    if (npcs != nullptr) {
+        number_of_npcs = 0;
+        delete[] npcs;
+        npcs = nullptr;
+    }
+
+}
+
+void Gamespace::clear_tiles (void)
+{
+    if (map_tiles != nullptr) {
+        map_width = 0;
+        map_height = 0;
+        delete[] map_tiles;
+        map_tiles = nullptr;
     }
 }
 
@@ -149,7 +172,7 @@ void Gamespace::set_map_level (uint16_t new_map_level)
     map_level = new_map_level;
 }
 
-void Gamespace::set_map_tiles (uint8_t length, uint16_t* new_map_tiles)
+void Gamespace::set_map_tiles (uint16_t length, uint16_t* new_map_tiles)
 {
     map_tiles = new uint16_t[length];
     for (int i = 0; i < length; ++i) {
@@ -171,8 +194,6 @@ void Gamespace::set_map_height (unsigned int new_map_height)
 void Gamespace::set_NPCs (NPChar* NPCs, unsigned int length)
 {
     number_of_npcs = length;
-    // Delete the old NPCs
-    delete[] npcs;
     // Create the new NPCs
     npcs = new NPChar[number_of_npcs];
     for (unsigned int i = 0; i < number_of_npcs; ++i) {

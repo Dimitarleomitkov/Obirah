@@ -98,18 +98,38 @@ void npc_move (Gamespace& gamespace)
     }
 }
 
-e_Commands PlayerInput(void)
+e_Commands PlayerInput(Gamespace& gamespace)
 {
     e_Commands command = INVALID;
     char input;
 
+    // Get an input until it is a proper one
     do {
         input = tolower (getch());
         command = ParseInput(input);
     } while (command == INVALID);
 
-    if (command == EXIT) {
-        return command;
+    switch (command) {
+        case UP:
+            break;
+        case LEFT:
+            break;
+        case DOWN:
+            break;
+        case RIGHT:
+            break;
+        case EXIT:
+            return command;
+        case NEXT_LEVEL:
+            gamespace.set_map_level (gamespace.get_map_level() + 1);
+            gamespace.generate_level ();
+            break;
+        case PREVIOUS_LEVEL:
+            gamespace.set_map_level (gamespace.get_map_level() - 1);
+            gamespace.generate_level ();
+            break;
+        default:
+            break;
     }
 
     return command;
@@ -128,6 +148,10 @@ e_Commands ParseInput (char input)
             return RIGHT;
         case 'q':
             return EXIT;
+        case '>':
+            return NEXT_LEVEL;
+        case '<':
+            return PREVIOUS_LEVEL;
         default:
             return INVALID;
     }

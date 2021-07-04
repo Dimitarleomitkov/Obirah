@@ -10,9 +10,10 @@ enum e_TileType{
     GATE = 5,
     TREE = 6,
     BUSH = 7,
-    WALL = 8,
-    DOWNWALL = 9,
-    UNKNOWN = 10
+    ROAD = 8,
+    WALL = 9,
+    DOWNWALL = 10,
+    UNKNOWN = 11
 };
 
 #endif // TERRAIN_H

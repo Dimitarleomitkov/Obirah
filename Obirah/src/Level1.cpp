@@ -4,6 +4,12 @@
 
 void CreateLevel1 (Gamespace& gamespace)
 {
+    // Despawn the NPCs
+    gamespace.despawn_npcs ();
+
+    // Clear all tiles
+    gamespace.clear_tiles ();
+
     // Set the height and width for the level
     gamespace.set_map_width (12);
     gamespace.set_map_height (12);
@@ -15,61 +21,151 @@ void CreateLevel1 (Gamespace& gamespace)
     // Create the map
     uint16_t* dummy_map_tiles = new uint16_t[map_width * map_height];
 
-    uint8_t i = 0;
-    uint8_t j = 0;
+    dummy_map_tiles[0 * 12 + 0] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 1] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 2] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 3] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 4] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 5] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 6] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 7] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 8] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 9] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 10] = DOWNWALL;
+    dummy_map_tiles[0 * 12 + 11] = DOWNWALL;
+    dummy_map_tiles[1 * 12 + 0] = WALL;
+    dummy_map_tiles[1 * 12 + 1] = EMPTY;
+    dummy_map_tiles[1 * 12 + 2] = EMPTY;
+    dummy_map_tiles[1 * 12 + 3] = EMPTY;
+    dummy_map_tiles[1 * 12 + 4] = EMPTY;
+    dummy_map_tiles[1 * 12 + 5] = EMPTY;
+    dummy_map_tiles[1 * 12 + 6] = BUSH;
+    dummy_map_tiles[1 * 12 + 7] = WALL;
+    dummy_map_tiles[1 * 12 + 8] = EMPTY;
+    dummy_map_tiles[1 * 12 + 9] = EMPTY;
+    dummy_map_tiles[1 * 12 + 10] = EMPTY;
+    dummy_map_tiles[1 * 12 + 11] = WALL;
+    dummy_map_tiles[2 * 12 + 0] = WALL;
+    dummy_map_tiles[2 * 12 + 1] = DOWNWALL;
+    dummy_map_tiles[2 * 12 + 2] = DOWNWALL;
+    dummy_map_tiles[2 * 12 + 3] = DOWNWALL;
+    dummy_map_tiles[2 * 12 + 4] = DOWNWALL;
+    dummy_map_tiles[2 * 12 + 5] = EMPTY;
+    dummy_map_tiles[2 * 12 + 6] = EMPTY;
+    dummy_map_tiles[2 * 12 + 7] = WALL;
+    dummy_map_tiles[2 * 12 + 8] = EMPTY;
+    dummy_map_tiles[2 * 12 + 9] = EMPTY;
+    dummy_map_tiles[2 * 12 + 10] = EMPTY;
+    dummy_map_tiles[2 * 12 + 11] = WALL;
+    dummy_map_tiles[3 * 12 + 0] = WALL;
+    dummy_map_tiles[3 * 12 + 1] = EMPTY;
+    dummy_map_tiles[3 * 12 + 2] = EMPTY;
+    dummy_map_tiles[3 * 12 + 3] = EMPTY;
+    dummy_map_tiles[3 * 12 + 4] = WALL;
+    dummy_map_tiles[3 * 12 + 5] = EMPTY;
+    dummy_map_tiles[3 * 12 + 6] = EMPTY;
+    dummy_map_tiles[3 * 12 + 7] = WALL;
+    dummy_map_tiles[3 * 12 + 8] = EMPTY;
+    dummy_map_tiles[3 * 12 + 9] = EMPTY;
+    dummy_map_tiles[3 * 12 + 10] = EMPTY;
+    dummy_map_tiles[3 * 12 + 11] = WALL;
+    dummy_map_tiles[4 * 12 + 0] = WALL;
+    dummy_map_tiles[4 * 12 + 1] = EMPTY;
+    dummy_map_tiles[4 * 12 + 2] = EMPTY;
+    dummy_map_tiles[4 * 12 + 3] = EMPTY;
+    dummy_map_tiles[4 * 12 + 4] = DOOR;
+    dummy_map_tiles[4 * 12 + 5] = EMPTY;
+    dummy_map_tiles[4 * 12 + 6] = EMPTY;
+    dummy_map_tiles[4 * 12 + 7] = DOWNWALL;
+    dummy_map_tiles[4 * 12 + 8] = DOOR;
+    dummy_map_tiles[4 * 12 + 9] = DOWNWALL;
+    dummy_map_tiles[4 * 12 + 10] = DOWNWALL;
+    dummy_map_tiles[4 * 12 + 11] = WALL;
+    dummy_map_tiles[5 * 12 + 0] = WALL;
+    dummy_map_tiles[5 * 12 + 1] = EMPTY;
+    dummy_map_tiles[5 * 12 + 2] = EMPTY;
+    dummy_map_tiles[5 * 12 + 3] = EMPTY;
+    dummy_map_tiles[5 * 12 + 4] = WALL;
+    dummy_map_tiles[5 * 12 + 5] = EMPTY;
+    dummy_map_tiles[5 * 12 + 6] = EMPTY;
+    dummy_map_tiles[5 * 12 + 7] = EMPTY;
+    dummy_map_tiles[5 * 12 + 8] = EMPTY;
+    dummy_map_tiles[5 * 12 + 9] = EMPTY;
+    dummy_map_tiles[5 * 12 + 10] = EMPTY;
+    dummy_map_tiles[5 * 12 + 11] = WALL;
+    dummy_map_tiles[6 * 12 + 0] = WALL;
+    dummy_map_tiles[6 * 12 + 1] = DOWNWALL;
+    dummy_map_tiles[6 * 12 + 2] = DOWNWALL;
+    dummy_map_tiles[6 * 12 + 3] = DOWNWALL;
+    dummy_map_tiles[6 * 12 + 4] = WALL;
+    dummy_map_tiles[6 * 12 + 5] = EMPTY;
+    dummy_map_tiles[6 * 12 + 6] = PLAYER;
+    dummy_map_tiles[6 * 12 + 7] = EMPTY;
+    dummy_map_tiles[6 * 12 + 8] = EMPTY;
+    dummy_map_tiles[6 * 12 + 9] = EMPTY;
+    dummy_map_tiles[6 * 12 + 10] = EMPTY;
+    dummy_map_tiles[6 * 12 + 11] = WALL;
+    dummy_map_tiles[7 * 12 + 0] = WALL;
+    dummy_map_tiles[7 * 12 + 1] = EMPTY;
+    dummy_map_tiles[7 * 12 + 2] = EMPTY;
+    dummy_map_tiles[7 * 12 + 3] = EMPTY;
+    dummy_map_tiles[7 * 12 + 4] = EMPTY;
+    dummy_map_tiles[7 * 12 + 5] = EMPTY;
+    dummy_map_tiles[7 * 12 + 6] = EMPTY;
+    dummy_map_tiles[7 * 12 + 7] = EMPTY;
+    dummy_map_tiles[7 * 12 + 8] = EMPTY;
+    dummy_map_tiles[7 * 12 + 9] = EMPTY;
+    dummy_map_tiles[7 * 12 + 10] = EMPTY;
+    dummy_map_tiles[7 * 12 + 11] = WALL;
+    dummy_map_tiles[8 * 12 + 0] = WALL;
+    dummy_map_tiles[8 * 12 + 1] = EMPTY;
+    dummy_map_tiles[8 * 12 + 2] = EMPTY;
+    dummy_map_tiles[8 * 12 + 3] = EMPTY;
+    dummy_map_tiles[8 * 12 + 4] = EMPTY;
+    dummy_map_tiles[8 * 12 + 5] = EMPTY;
+    dummy_map_tiles[8 * 12 + 6] = EMPTY;
+    dummy_map_tiles[8 * 12 + 7] = EMPTY;
+    dummy_map_tiles[8 * 12 + 8] = EMPTY;
+    dummy_map_tiles[8 * 12 + 9] = EMPTY;
+    dummy_map_tiles[8 * 12 + 10] = TREE;
+    dummy_map_tiles[8 * 12 + 11] = WALL;
+    dummy_map_tiles[9 * 12 + 0] = WALL;
+    dummy_map_tiles[9 * 12 + 1] = EMPTY;
+    dummy_map_tiles[9 * 12 + 2] = TREE;
+    dummy_map_tiles[9 * 12 + 3] = EMPTY;
+    dummy_map_tiles[9 * 12 + 4] = WALL;
+    dummy_map_tiles[9 * 12 + 5] = ROAD;
+    dummy_map_tiles[9 * 12 + 6] = ROAD;
+    dummy_map_tiles[9 * 12 + 7] = WALL;
+    dummy_map_tiles[9 * 12 + 8] = DOOR;
+    dummy_map_tiles[9 * 12 + 9] = DOWNWALL;
+    dummy_map_tiles[9 * 12 + 10] = DOWNWALL;
+    dummy_map_tiles[9 * 12 + 11] = WALL;
+    dummy_map_tiles[10 * 12 + 0] = WALL;
+    dummy_map_tiles[10 * 12 + 1] = EMPTY;
+    dummy_map_tiles[10 * 12 + 2] = EMPTY;
+    dummy_map_tiles[10 * 12 + 3] = EMPTY;
+    dummy_map_tiles[10 * 12 + 4] = WALL;
+    dummy_map_tiles[10 * 12 + 5] = ROAD;
+    dummy_map_tiles[10 * 12 + 6] = ROAD;
+    dummy_map_tiles[10 * 12 + 7] = WALL;
+    dummy_map_tiles[10 * 12 + 8] = EMPTY;
+    dummy_map_tiles[10 * 12 + 9] = EMPTY;
+    dummy_map_tiles[10 * 12 + 10] = EMPTY;
+    dummy_map_tiles[10 * 12 + 11] = WALL;
+    dummy_map_tiles[11 * 12 + 0] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 1] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 2] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 3] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 4] = WALL;
+    dummy_map_tiles[11 * 12 + 5] = GATE;
+    dummy_map_tiles[11 * 12 + 6] = GATE;
+    dummy_map_tiles[11 * 12 + 7] = WALL;
+    dummy_map_tiles[11 * 12 + 8] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 9] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 10] = DOWNWALL;
+    dummy_map_tiles[11 * 12 + 11] = DOWNWALL;
 
-    for (j = 0; j < map_width; ++j) {
-        dummy_map_tiles[j] = DOWNWALL;
-    }
-    j = 0;
-    for (i = 1; i < map_height - 1; ++i) {
-        dummy_map_tiles [i * map_width + j] = WALL;
-        for (j = 1; j < map_width - 1; ++j) {
-            dummy_map_tiles[i * map_width + j] = EMPTY;
-        }
-        dummy_map_tiles [i * map_width + j] = WALL;
-        j = 0;
-    }
-    for (j = 0; j < map_width; ++j) {
-        dummy_map_tiles[i * map_width + j] = DOWNWALL;
-    }
-
-    // House 1
-    dummy_map_tiles[19] = WALL;
-    dummy_map_tiles[31] = WALL;
-    dummy_map_tiles[43] = WALL;
-    dummy_map_tiles[55] = DOWNWALL;
-    dummy_map_tiles[56] = DOOR;
-    dummy_map_tiles[57] = DOWNWALL;
-    dummy_map_tiles[58] = DOWNWALL;
-
-    // House 2
-    dummy_map_tiles[25] = DOWNWALL;
-    dummy_map_tiles[26] = DOWNWALL;
-    dummy_map_tiles[27] = DOWNWALL;
-    dummy_map_tiles[28] = DOWNWALL;
-    dummy_map_tiles[40] = WALL;
-    dummy_map_tiles[52] = DOOR;
-    dummy_map_tiles[64] = WALL;
-    dummy_map_tiles[73] = DOWNWALL;
-    dummy_map_tiles[74] = DOWNWALL;
-    dummy_map_tiles[75] = DOWNWALL;
-    dummy_map_tiles[76] = WALL;
-
-    // House 3
-    dummy_map_tiles[116] = DOOR;
-    dummy_map_tiles[117] = DOWNWALL;
-    dummy_map_tiles[118] = DOWNWALL;
-
-    // Gates
-    dummy_map_tiles[112] = WALL;
-    dummy_map_tiles[115] = WALL;
-    dummy_map_tiles[124] = WALL;
-    dummy_map_tiles[127] = WALL;
-    dummy_map_tiles[136] = WALL;
-    dummy_map_tiles[137] = GATE;
-    dummy_map_tiles[138] = GATE;
-    dummy_map_tiles[139] = WALL;
 
     // NPCs
     NPChar Nira (2, 10, "Nira");
@@ -84,13 +180,6 @@ void CreateLevel1 (Gamespace& gamespace)
     new_npcs[2] = Rick;
 
     gamespace.set_NPCs (new_npcs, 3);
-
-    // Trees
-    dummy_map_tiles[106] = TREE;
-    dummy_map_tiles[110] = TREE;
-
-    // Bushes
-    dummy_map_tiles[18] = BUSH;
 
     // Set the map in the gamespace
     gamespace.set_map_tiles (map_width * map_height, dummy_map_tiles);

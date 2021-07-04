@@ -20,6 +20,12 @@ class Gamespace
         // Function to draw the world
         void draw_world (void);
 
+        // Function to despawn all NPCs
+        void despawn_npcs (void);
+
+        // Function to clear all tiles
+        void clear_tiles (void);
+
         // Get functions
         uint16_t get_map_level (void);
         uint16_t* get_map_tiles (void);
@@ -32,7 +38,7 @@ class Gamespace
 
         // Set functions
         void set_map_level (uint16_t new_map_level);
-        void set_map_tiles (uint8_t length, uint16_t* new_map_tiles);
+        void set_map_tiles (uint16_t length, uint16_t* new_map_tiles);
         void set_map_tile (uint16_t new_map_tile);
         void set_map_width (unsigned int new_map_width);
         void set_map_height (unsigned int new_map_height);

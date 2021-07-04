@@ -14,7 +14,7 @@ int main ()
         // The world ticks once
         worldFrame (gamespace);
         // Take an input from the player
-        inputCommand = PlayerInput ();
+        inputCommand = PlayerInput (gamespace);
     }
 
     return 0;

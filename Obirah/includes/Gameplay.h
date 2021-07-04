@@ -9,7 +9,9 @@ enum e_Commands {
     UP = 2,
     LEFT = 3,
     DOWN = 4,
-    RIGHT = 5
+    RIGHT = 5,
+    NEXT_LEVEL = 6,
+    PREVIOUS_LEVEL = 7
 };
 
 enum e_Directions {
@@ -22,7 +24,7 @@ enum e_Directions {
 void clear_screen (void);
 void worldFrame (Gamespace& gamespace);
 void npc_move (Gamespace& gamespace);
-e_Commands PlayerInput (void);
+e_Commands PlayerInput (Gamespace& gamespace);
 e_Commands ParseInput (char input);
 
 #endif // GAMEPLAY_H
