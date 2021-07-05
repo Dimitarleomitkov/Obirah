@@ -13,16 +13,27 @@ fr = open (f"{sys.argv[1]}", "r");
 for line in fr:
 	n_lines += 1;
 
+check_tile = " ";
+fr = open (f"{sys.argv[1]}", "r");
+for i in range (n_symbols * n_lines):
+	fr.read(1);
+	# Check if everything is aligned correctly
+	check_tile = fr.read(1);
+	if (check_tile != " " and check_tile != "\n"):
+		curr_row = int (i / n_symbols);
+		curr_column = int (i % n_symbols);
+		print (f"Tile {i}({check_tile}) is miss aligned. R{curr_row} | C{curr_column}\n");
+		exit ();
 
 def notation_to_obj(tile_obj):
 	if (tile_obj == " "):
 		return "EMPTY"
 	elif (tile_obj == "O"):
-		return "PLAYER"
+		return "EMPTY"
 	elif (tile_obj == "N"):
 		return "EMPTY"
 	elif (tile_obj == "X"):
-		return "ENEMY"
+		return "EMPTY"
 	elif (tile_obj == "D"):
 		return "DOOR"
 	elif (tile_obj == "G"):
@@ -37,10 +48,14 @@ def notation_to_obj(tile_obj):
 		return "WALL"
 	elif (tile_obj == "_"):
 		return "DOWNWALL"
+	elif (tile_obj == "~"):
+		return "WATER"
+	elif (tile_obj == "n"):
+		return "STONE"
 	elif (tile_obj == "?"):
 		return "UNKNOWN"
 
-new_file_name = "GeneratedMap.cpp"
+new_file_name = "z_GeneratedMap.cpp"
 fw = open (f"{new_file_name}", "w");
 fr = open (f"{sys.argv[1]}", "r");
 row = 0;
@@ -48,6 +63,8 @@ column = 0;
 tile_obj = " ";
 
 fw.write (f"\t// Despawn the NPCs\n\tgamespace.despawn_npcs ();\n\n\t// Clear all tiles\n\tgamespace.clear_tiles ();\n\n");
+fw.write (f"\t// Set the name of the level\n");
+fw.write (f'\tgamespace.set_map_name("NameOfTheMap");\n\n')
 fw.write (f"\t// Set the height and width for the level\n");
 fw.write (f"\tgamespace.set_map_width ({n_symbols});\n");
 fw.write (f"\tgamespace.set_map_height ({n_lines});\n\n");
@@ -68,7 +85,7 @@ for i in range (n_symbols * n_lines):
 		row += 1;
 		column = 0;
 
-
+fw.write (f"\n");
 fw.write (f"\t// NPCs\n\n\n");
 fw.write (f"\t// Enemies\n\n\n");
 

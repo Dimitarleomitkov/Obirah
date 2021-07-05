@@ -121,10 +121,16 @@ e_Commands PlayerInput(Gamespace& gamespace)
         case EXIT:
             return command;
         case NEXT_LEVEL:
+            if (gamespace.get_map_level() == 5) {
+                break;
+            }
             gamespace.set_map_level (gamespace.get_map_level() + 1);
             gamespace.generate_level ();
             break;
         case PREVIOUS_LEVEL:
+            if (gamespace.get_map_level() == 1) {
+                break;
+            }
             gamespace.set_map_level (gamespace.get_map_level() - 1);
             gamespace.generate_level ();
             break;

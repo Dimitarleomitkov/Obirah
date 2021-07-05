@@ -10,6 +10,9 @@ void CreateLevel2 (Gamespace& gamespace)
 	// Clear all tiles
 	gamespace.clear_tiles ();
 
+	// Set the name of the level
+    gamespace.set_map_name("Mitsko Forest");
+
 	// Set the height and width for the level
 	gamespace.set_map_width (30);
 	gamespace.set_map_height (30);
@@ -21,18 +24,18 @@ void CreateLevel2 (Gamespace& gamespace)
 	// Create the map
 	uint16_t* dummy_map_tiles = new uint16_t[map_width * map_height];
 
-	dummy_map_tiles[0 * 30 + 0] = TREE;
-	dummy_map_tiles[0 * 30 + 1] = TREE;
-	dummy_map_tiles[0 * 30 + 2] = TREE;
-	dummy_map_tiles[0 * 30 + 3] = TREE;
+	dummy_map_tiles[0 * 30 + 0] = DOWNWALL;
+	dummy_map_tiles[0 * 30 + 1] = DOWNWALL;
+	dummy_map_tiles[0 * 30 + 2] = DOWNWALL;
+	dummy_map_tiles[0 * 30 + 3] = DOWNWALL;
 	dummy_map_tiles[0 * 30 + 4] = WALL;
 	dummy_map_tiles[0 * 30 + 5] = GATE;
 	dummy_map_tiles[0 * 30 + 6] = GATE;
 	dummy_map_tiles[0 * 30 + 7] = WALL;
-	dummy_map_tiles[0 * 30 + 8] = TREE;
-	dummy_map_tiles[0 * 30 + 9] = TREE;
-	dummy_map_tiles[0 * 30 + 10] = TREE;
-	dummy_map_tiles[0 * 30 + 11] = TREE;
+	dummy_map_tiles[0 * 30 + 8] = DOWNWALL;
+	dummy_map_tiles[0 * 30 + 9] = DOWNWALL;
+	dummy_map_tiles[0 * 30 + 10] = DOWNWALL;
+	dummy_map_tiles[0 * 30 + 11] = DOWNWALL;
 	dummy_map_tiles[0 * 30 + 12] = TREE;
 	dummy_map_tiles[0 * 30 + 13] = TREE;
 	dummy_map_tiles[0 * 30 + 14] = TREE;
@@ -650,7 +653,7 @@ void CreateLevel2 (Gamespace& gamespace)
 	dummy_map_tiles[20 * 30 + 26] = TREE;
 	dummy_map_tiles[20 * 30 + 27] = EMPTY;
 	dummy_map_tiles[20 * 30 + 28] = EMPTY;
-	dummy_map_tiles[20 * 30 + 29] = TREE;
+	dummy_map_tiles[20 * 30 + 29] = BUSH;
 	dummy_map_tiles[21 * 30 + 0] = BUSH;
 	dummy_map_tiles[21 * 30 + 1] = EMPTY;
 	dummy_map_tiles[21 * 30 + 2] = EMPTY;
@@ -680,7 +683,7 @@ void CreateLevel2 (Gamespace& gamespace)
 	dummy_map_tiles[21 * 30 + 26] = TREE;
 	dummy_map_tiles[21 * 30 + 27] = EMPTY;
 	dummy_map_tiles[21 * 30 + 28] = EMPTY;
-	dummy_map_tiles[21 * 30 + 29] = TREE;
+	dummy_map_tiles[21 * 30 + 29] = WATER;
 	dummy_map_tiles[22 * 30 + 0] = TREE;
 	dummy_map_tiles[22 * 30 + 1] = EMPTY;
 	dummy_map_tiles[22 * 30 + 2] = EMPTY;
@@ -921,6 +924,7 @@ void CreateLevel2 (Gamespace& gamespace)
 	dummy_map_tiles[29 * 30 + 27] = ROAD;
 	dummy_map_tiles[29 * 30 + 28] = BUSH;
 	dummy_map_tiles[29 * 30 + 29] = TREE;
+
 	// NPCs
 
 

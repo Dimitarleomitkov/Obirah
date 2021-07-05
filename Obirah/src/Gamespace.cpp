@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 
+
 //ctors
 Gamespace::Gamespace ()
 {
@@ -31,6 +32,14 @@ void Gamespace::generate_level (void)
         case 2:
             CreateLevel2 (*this);
             break;
+        case 3:
+            CreateLevel3 (*this);
+            break;
+        case 4:
+            CreateLevel4 (*this);
+            break;
+        case 5:
+            CreateLevel5 (*this);
         default:
             std::cout << "UNSUPPORTED LEVEL!" << std::endl;
             break;
@@ -52,7 +61,7 @@ void Gamespace::draw_world (void)
         }
         std::cout << (int) j;
     }
-    std::cout << std::endl;
+    std::cout << " - " << get_map_name() << std::endl;
 
     // Draw the tiles
     for (i = 0; i < map_height; ++i) {
@@ -93,6 +102,12 @@ void Gamespace::draw_world (void)
                 case DOWNWALL:
                     std::cout << "_";
                     break;
+                case WATER:
+                    std::cout << "~";
+                    break;
+                case STONE:
+                    std::cout << "n";
+                    break;
                 case UNKNOWN:
                     std::cout << "?";
                     break;
@@ -129,6 +144,11 @@ void Gamespace::clear_tiles (void)
 uint16_t Gamespace::get_map_level (void)
 {
     return map_level;
+}
+
+std::string Gamespace::get_map_name (void)
+{
+    return map_name;
 }
 
 uint16_t* Gamespace::get_map_tiles (void)
@@ -170,6 +190,11 @@ uint16_t Gamespace::get_number_of_npcs (void)
 void Gamespace::set_map_level (uint16_t new_map_level)
 {
     map_level = new_map_level;
+}
+
+void Gamespace::set_map_name (std::string Name)
+{
+    map_name = Name;
 }
 
 void Gamespace::set_map_tiles (uint16_t length, uint16_t* new_map_tiles)

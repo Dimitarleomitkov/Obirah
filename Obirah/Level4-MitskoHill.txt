@@ -1,0 +1,29 @@
+n n n n n n n n n n * n n n n n n n n n n n | G G T G G | n n n n
+n                 * n                       | H H n H H |       n
+n H H H H H H H H H H H n             n _ _ T | H T H |   n     n
+* H T       n * n   n H H   H H * H H H H H _ | H H H |         *
+n H               T   T H H H H H H *   * H H H H H _     n     n
+n H       n             * n n n n n *   n * _ _ _ _     n   n   n
+n H H   n       * H H H         H H H *                         n
+n   H H H H H H H H n H H H H H H n H   * *                     T
+T _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ H H             *           T
+T                   H H H H H H H H H H                       n *
+*   *           H H H H H H H H H H H H         n               T
+n             H H H _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ T
+*   T           H H H H                       T *               *
+*                   H H H       *       T *           T         T
+~   T         *       H H H                   *       T         *
+T                       H H H       *   *                       T
+*                   *   * H H H       * n *         T           n
+T       *                   H H H *   *             *           *
+T                       T     H H H H H * *                     T
+T _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ H H H                       T
+n                   H H H H H H H H H H       T     T         * *
+*   *             H H H H H H H H H H H                       T T
+T               H H _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ T
+*   T           H H H H                       T *               *
+*       *   T     H H H                   T     *   T           n
+~     T     *   n   H H H         *   T T T                     n
+~                     H H H               *           T         n
+~ ~                   H H H     *     T                         n
+~ ~ ~ * * * T T T T * H H H T T T T T T T T * T T T T T * T * * T
