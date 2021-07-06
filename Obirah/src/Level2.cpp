@@ -22,7 +22,7 @@ void CreateLevel2 (Gamespace& gamespace)
 	uint8_t map_height = gamespace.get_map_height ();
 
 	// Create the map
-	uint16_t* dummy_map_tiles = new uint16_t[map_width * map_height];
+	e_TileType* dummy_map_tiles = new e_TileType[map_width * map_height];
 
 	dummy_map_tiles[0 * 30 + 0] = DOWNWALL;
 	dummy_map_tiles[0 * 30 + 1] = DOWNWALL;

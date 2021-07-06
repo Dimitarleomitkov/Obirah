@@ -22,7 +22,7 @@ for i in range (n_symbols * n_lines):
 	if (check_tile != " " and check_tile != "\n"):
 		curr_row = int (i / n_symbols);
 		curr_column = int (i % n_symbols);
-		print (f"Tile {i}({check_tile}) is miss aligned. R{curr_row} | C{curr_column}\n");
+		print (f"Tile {i}({check_tile}) is missaligned. R{curr_row} | C{curr_column}\n");
 		exit ();
 
 def notation_to_obj(tile_obj):
@@ -72,7 +72,7 @@ fw.write (f"\t// Make a working copy of the width and height for this function\n
 fw.write (f"\tuint8_t map_width = gamespace.get_map_width ();\n");
 fw.write (f"\tuint8_t map_height = gamespace.get_map_height ();\n\n");
 fw.write (f"\t// Create the map\n");
-fw.write (f"\tuint16_t* dummy_map_tiles = new uint16_t[map_width * map_height];\n\n");
+fw.write (f"\te_TileType* dummy_map_tiles = new e_TileType[map_width * map_height];\n\n");
 
 for i in range (n_symbols * n_lines):
 	tile_obj = fr.read(1);

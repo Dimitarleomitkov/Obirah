@@ -26,5 +26,10 @@ void worldFrame (Gamespace& gamespace);
 void npc_move (Gamespace& gamespace);
 e_Commands PlayerInput (Gamespace& gamespace);
 e_Commands ParseInput (char input);
+void Player_move_up (Gamespace& the_player);
+void Player_move_left (Gamespace& the_player);
+void Player_move_down (Gamespace& the_player);
+void Player_move_right (Gamespace& the_player);
+bool check_collision (e_Directions direction, Gamespace& gamespace);
 
 #endif // GAMEPLAY_H

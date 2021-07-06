@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <stdint.h>
+#include <string>
 
 class Player
 {
@@ -21,6 +22,9 @@ class Player
         uint16_t PositionX (void);
         uint16_t PositionY (void);
 
+        // Setting function for the name
+        void set_name (std::string Name);
+
         // Increase functions for the attributes of the player
         void IncreaseHealth (uint64_t amount);
         void IncreaseAgility (uint64_t amount);
@@ -36,23 +40,28 @@ class Player
         void DecreaseAwareness (uint8_t amount);
 
         // Getting functions for the attributes of the player
-        uint64_t Health (void);
-        uint64_t Agility (void);
-        uint64_t Strength (void);
-        uint64_t Intelligence (void);
-        uint8_t Awareness (void);
+        uint64_t get_Health (void);
+        uint64_t get_Agility (void);
+        uint64_t get_Strength (void);
+        uint64_t get_Intelligence (void);
+        uint8_t get_Awareness (void);
+        std::string get_name (void);
+
     protected:
     private:
         // Members for the position of the players
-        uint16_t m_positionX;
-        uint16_t m_positionY;
+        uint16_t positionX;
+        uint16_t positionY;
 
         // Members for the attributes of the player
-        uint64_t m_health;
-        uint64_t m_agility;
-        uint64_t m_strength;
-        uint64_t m_intelligence;
-        uint8_t m_awareness;
+        uint64_t health;
+        uint64_t agility;
+        uint64_t strength;
+        uint64_t intelligence;
+        uint8_t awareness;
+
+        // Name
+        std::string name;
 };
 
 #endif // PLAYER_H

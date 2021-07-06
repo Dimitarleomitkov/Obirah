@@ -6,9 +6,16 @@
 #include <time.h>
 
 void worldFrame (Gamespace& gamespace) {
+    // Clear the screen
     clear_screen ();
+    // Move the NPCs
     npc_move (gamespace);
-    gamespace.draw_world ();
+    // Move the Enemies
+
+    // Draw the world
+    gamespace.draw_world();
+    // Print the message
+    std::cout << gamespace.get_message();
 }
 
 void clear_screen (void)
@@ -111,12 +118,16 @@ e_Commands PlayerInput(Gamespace& gamespace)
 
     switch (command) {
         case UP:
+            Player_move_up (gamespace);
             break;
         case LEFT:
+            Player_move_left (gamespace);
             break;
         case DOWN:
+            Player_move_down (gamespace);
             break;
         case RIGHT:
+            Player_move_right (gamespace);
             break;
         case EXIT:
             return command;
@@ -161,4 +172,173 @@ e_Commands ParseInput (char input)
         default:
             return INVALID;
     }
+}
+
+void Player_move_up (Gamespace& gamespace)
+{
+    // Check for collision
+    bool collision = check_collision (D_UP, gamespace);
+
+    if (collision == true) {
+        return;
+    } else {
+        Player dummy_player = gamespace.get_player();
+        uint16_t tile_index = dummy_player.PositionX() * gamespace.get_map_width() + dummy_player.PositionY();
+
+        dummy_player.MoveUp(1);
+        gamespace.set_player(dummy_player);
+        gamespace.set_tile(tile_index, gamespace.get_original_map_tile(tile_index));
+    }
+}
+
+void Player_move_left (Gamespace& gamespace)
+{
+    // Check for collision
+    bool collision = check_collision (D_LEFT, gamespace);
+
+    if (collision == true) {
+        return;
+    } else {
+        Player dummy_player = gamespace.get_player();
+        uint16_t tile_index = dummy_player.PositionX() * gamespace.get_map_width() + dummy_player.PositionY();
+
+        dummy_player.MoveLeft(1);
+        gamespace.set_player(dummy_player);
+        gamespace.set_tile(tile_index, gamespace.get_original_map_tile(tile_index));
+    }
+}
+
+void Player_move_down (Gamespace& gamespace)
+{
+    // Check for collision
+    bool collision = check_collision (D_DOWN, gamespace);
+
+    if (collision == true) {
+        return;
+    } else {
+        Player dummy_player = gamespace.get_player();
+        uint16_t tile_index = dummy_player.PositionX() * gamespace.get_map_width() + dummy_player.PositionY();
+
+        dummy_player.MoveDown(1);
+        gamespace.set_player(dummy_player);
+        gamespace.set_tile(tile_index, gamespace.get_original_map_tile(tile_index));
+    }
+}
+
+void Player_move_right (Gamespace& gamespace)
+{
+    // Check for collision
+    bool collision = check_collision (D_RIGHT, gamespace);
+
+    if (collision == true) {
+        return;
+    } else {
+        Player dummy_player = gamespace.get_player();
+        uint16_t tile_index = dummy_player.PositionX() * gamespace.get_map_width() + dummy_player.PositionY();
+
+        dummy_player.MoveRight(1);
+        gamespace.set_player(dummy_player);
+        gamespace.set_tile(tile_index, gamespace.get_original_map_tile(tile_index));
+    }
+}
+
+bool check_collision (e_Directions direction, Gamespace& gamespace)
+{
+    // Get the position of the player
+    uint16_t x_pos = gamespace.get_player().PositionX();
+    uint16_t y_pos = gamespace.get_player().PositionY();
+    gamespace.set_message ("");
+
+    uint16_t index;
+    e_TileType dummy_tile;
+
+    switch (direction) {
+        case D_UP:
+            // Calculate the tile index
+            index = (x_pos - 1) * gamespace.get_map_width() + y_pos;
+            // Get the tile
+            dummy_tile = gamespace.get_map_tile(index);
+            if (dummy_tile != EMPTY && dummy_tile != ROAD) {
+                break;
+            }
+            return false;
+        case D_LEFT:
+            // Calculate the tile index
+            index = x_pos * gamespace.get_map_width() + (y_pos - 1);
+            // Get the tile
+            dummy_tile = gamespace.get_map_tile(index);
+            if (dummy_tile != EMPTY && dummy_tile != ROAD) {
+                break;
+            }
+            return false;
+        case D_DOWN:
+            // Calculate the tile index
+            index = (x_pos + 1) * gamespace.get_map_width() + y_pos;
+            // Get the tile
+            dummy_tile = gamespace.get_map_tile(index);
+            if (dummy_tile != EMPTY && dummy_tile != ROAD) {
+                break;
+            }
+            return false;
+        case D_RIGHT:
+            // Calculate the tile index
+            index = x_pos * gamespace.get_map_width() + (y_pos + 1);
+            // Get the tile
+            dummy_tile = gamespace.get_map_tile(index);
+            if (dummy_tile != EMPTY && dummy_tile != ROAD) {
+                break;
+            }
+            return false;
+        default:
+            std::cerr << "No such direction.\n" << std::endl;
+            break;
+    }
+
+    // Handle the collision
+    switch (dummy_tile) {
+        case EMPTY:
+            // Something has gone seriously wrong
+            break;
+        case PLAYER:
+            // Something has gone seriously wrong
+            break;
+        case NPC:
+            // Something else should happen here
+            break;
+        case ENEMY:
+            // Something else should happen here
+            break;
+        case DOOR:
+            // Something else should happen here
+            break;
+        case GATE:
+            // Something else should happen here
+            break;
+        case TREE:
+            gamespace.set_message ("There is a tree in the way.\n");
+            break;
+        case BUSH:
+            gamespace.set_message ("There is a lovely flowery bush in the way.\n");
+            break;
+        case ROAD:
+            // Something has gone seriously wrong
+            break;
+        case WALL:
+            gamespace.set_message ("There is a wall in the way.\n");
+            break;
+        case DOWNWALL:
+            gamespace.set_message ("There is a wall in the way.\n");
+            break;
+        case WATER:
+            // Something else should happen here
+            break;
+        case STONE:
+            gamespace.set_message ("There is a boulder in the way.\n");
+            break;
+        case UNKNOWN:
+            // Something else should happen here
+            break;
+    }
+
+    return true;
 }

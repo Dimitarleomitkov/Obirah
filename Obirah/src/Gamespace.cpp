@@ -141,6 +141,11 @@ void Gamespace::clear_tiles (void)
 }
 
 // Getters
+Player Gamespace::get_player (void)
+{
+    return hero;
+}
+
 uint16_t Gamespace::get_map_level (void)
 {
     return map_level;
@@ -151,14 +156,24 @@ std::string Gamespace::get_map_name (void)
     return map_name;
 }
 
-uint16_t* Gamespace::get_map_tiles (void)
+e_TileType* Gamespace::get_map_tiles (void)
 {
     return map_tiles;
 }
 
-uint16_t Gamespace::get_map_tile (uint16_t index)
+e_TileType Gamespace::get_map_tile (uint16_t index)
 {
     return map_tiles[index];
+}
+
+e_TileType* Gamespace::get_original_map_tiles (void)
+{
+    return original_map_tiles;
+}
+
+e_TileType Gamespace::get_original_map_tile (uint16_t index)
+{
+    return original_map_tiles[index];
 }
 
 uint8_t Gamespace::get_map_width (void)
@@ -186,7 +201,17 @@ uint16_t Gamespace::get_number_of_npcs (void)
     return number_of_npcs;
 }
 
+std::string Gamespace::get_message (void)
+{
+    return message;
+}
+
 // Setters
+void Gamespace::set_player (Player player)
+{
+    hero = player;
+}
+
 void Gamespace::set_map_level (uint16_t new_map_level)
 {
     map_level = new_map_level;
@@ -197,12 +222,19 @@ void Gamespace::set_map_name (std::string Name)
     map_name = Name;
 }
 
-void Gamespace::set_map_tiles (uint16_t length, uint16_t* new_map_tiles)
+void Gamespace::set_map_tiles (uint16_t length, e_TileType* new_map_tiles)
 {
-    map_tiles = new uint16_t[length];
+    original_map_tiles = new e_TileType[length];
+    map_tiles = new e_TileType[length];
     for (int i = 0; i < length; ++i) {
+        original_map_tiles[i] = new_map_tiles[i];
         map_tiles[i] = new_map_tiles[i];
     }
+}
+
+void Gamespace::set_tile (uint16_t index, e_TileType type)
+{
+    map_tiles[index] = type;
 }
 
 void Gamespace::set_map_width (unsigned int new_map_width)
@@ -214,7 +246,6 @@ void Gamespace::set_map_height (unsigned int new_map_height)
 {
     map_height = new_map_height;
 }
-
 
 void Gamespace::set_NPCs (NPChar* NPCs, unsigned int length)
 {
@@ -231,7 +262,7 @@ void Gamespace::set_NPC (NPChar* Npc, uint16_t index)
     npcs[index] = *Npc;
 }
 
-void Gamespace::set_tile (uint16_t index, e_TileType type)
+void Gamespace::set_message (std::string new_msg)
 {
-    map_tiles[index] = type;
+    message = new_msg;
 }
