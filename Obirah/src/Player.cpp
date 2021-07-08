@@ -57,6 +57,16 @@ void Player::MoveRight(uint8_t numberOfPositions)
     positionY += numberOfPositions;
 }
 
+void Player::set_PositionX (uint16_t x)
+{
+    positionX = x;
+}
+
+void Player::set_PositionY (uint16_t y)
+{
+    positionY = y;
+}
+
 // Increase functions for the attributes of the player
 void Player::IncreaseHealth (uint64_t amount)
 {

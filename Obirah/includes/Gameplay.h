@@ -10,6 +10,7 @@ enum e_Commands {
     LEFT = 3,
     DOWN = 4,
     RIGHT = 5,
+    // DEBUG commands
     NEXT_LEVEL = 6,
     PREVIOUS_LEVEL = 7
 };
@@ -31,5 +32,9 @@ void Player_move_left (Gamespace& the_player);
 void Player_move_down (Gamespace& the_player);
 void Player_move_right (Gamespace& the_player);
 bool check_collision (e_Directions direction, Gamespace& gamespace);
+bool Empty_collide (Gamespace& gamespace);
+bool Gate_collide (e_Directions direction, Gamespace& gamespace);
+bool Door_collide (e_Directions direction, Gamespace& gamespace);
+bool Road_collide (e_Directions direction, Gamespace& gamespace);
 
 #endif // GAMEPLAY_H

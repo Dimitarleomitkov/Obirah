@@ -136,7 +136,9 @@ void Gamespace::clear_tiles (void)
         map_width = 0;
         map_height = 0;
         delete[] map_tiles;
+        delete[] original_map_tiles;
         map_tiles = nullptr;
+        original_map_tiles = nullptr;
     }
 }
 

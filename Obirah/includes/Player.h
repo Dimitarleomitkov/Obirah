@@ -17,6 +17,8 @@ class Player
         void MoveLeft (uint8_t numberOfPositions = 1);
         void MoveDown (uint8_t numberOfPositions = 1);
         void MoveRight (uint8_t numberOfPositions = 1);
+        void set_PositionX (uint16_t x);
+        void set_PositionY (uint16_t y);
 
         // Getting functions for the position of the player
         uint16_t PositionX (void);
