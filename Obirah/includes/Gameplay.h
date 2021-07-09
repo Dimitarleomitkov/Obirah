@@ -35,6 +35,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace);
 bool Empty_collide (Gamespace& gamespace);
 bool Gate_collide (e_Directions direction, Gamespace& gamespace);
 bool Door_collide (e_Directions direction, Gamespace& gamespace);
+bool find_key (Gamespace& gamespace);
 bool Road_collide (e_Directions direction, Gamespace& gamespace);
 
 #endif // GAMEPLAY_H

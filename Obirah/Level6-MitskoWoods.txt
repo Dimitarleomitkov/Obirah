@@ -1,0 +1,23 @@
+* * T * * T * T T T T T * * * T * * * * T T * * T
+                H     T                     T   *
+H         H                             H       T
+      T                   H         *           T
+* T * * T T T * * T * * * * T T T * * T *   n   *
+T T *     T T T   *     *     * T *   * T       *
+T   T T     * *   T * T * T T     *           T *
+T   *     *   * T *       *   *   T             T
+T   * T             * * T   * T T *         * * T
+T   T * * * T *   T T *       *       * T T T * T
+*   * *       T     * *     T * * *     T   * * *
+*         T   * T     H   T T T * *       T * T *
+*     * T T               T   *   * *   H   *   T
+                      T       * T T   * *       T
+T     * * T *       *   T T   T * T   T   T *   T
+T     T     *     *     * T           T   *     *
+T       T       * T     * *     *       * T     *
+*   *   *   * * *           T T *             T T
+T       T * T             T         T * T     T T
+T     T * T *     T T   T T   T * T * T   T T   T
+*     T         T *   *       * T   * *   *   * T
+T         *   T * T T * *   T *     *   * T T * *
+T T * T * T T T T T * T * T * * * T T * T T * T *

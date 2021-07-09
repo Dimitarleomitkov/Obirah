@@ -85,6 +85,7 @@ void CreateLevel2 (Gamespace& gamespace);
 void CreateLevel3 (Gamespace& gamespace);
 void CreateLevel4 (Gamespace& gamespace);
 void CreateLevel5 (Gamespace& gamespace);
+void CreateLevel6 (Gamespace& gamespace);
 void populate_terrain (Gamespace& gamespace);
 
 #endif // GAMESPACE_H

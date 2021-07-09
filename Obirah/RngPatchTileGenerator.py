@@ -9,7 +9,7 @@ if (len(sys.argv) != 3):
 width = sys.argv[1];
 height = sys.argv[2];
 
-usable_tiles = [" ", "T", "*", "n"];
+usable_tiles = ["T", "*", " "];
 
 new_file_name = "z_rngterrain.txt"
 fw = open (f"{new_file_name}", "w");
