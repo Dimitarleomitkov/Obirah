@@ -5,7 +5,7 @@
 
 enum e_Commands {
     INVALID = 0,
-    EXIT = 1,
+    GAME_MENU = 1,
     UP = 2,
     LEFT = 3,
     DOWN = 4,

@@ -129,7 +129,7 @@ e_Commands PlayerInput(Gamespace& gamespace)
         case RIGHT:
             Player_move_right (gamespace);
             break;
-        case EXIT:
+        case GAME_MENU:
             return command;
         // DEBUG commands
         case NEXT_LEVEL:
@@ -164,8 +164,8 @@ e_Commands ParseInput (char input)
             return DOWN;
         case 'd':
             return RIGHT;
-        case 'q':
-            return EXIT;
+        case 'm':
+            return GAME_MENU;
         // DEBUG commands
         case '>':
             return NEXT_LEVEL;

@@ -15,7 +15,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
             dummy_player.set_PositionX (0);
             if (direction == D_LEFT) {
                 dummy_player.set_PositionY (5);
-            } else {
+            } else if (direction == D_RIGHT) {
                 dummy_player.set_PositionY (6);
             }
             // Set the player
@@ -27,7 +27,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
             dummy_player.set_PositionX (11);
             if (direction == D_LEFT) {
                 dummy_player.set_PositionY (5);
-            } else {
+            } else if (direction == D_RIGHT) {
                 dummy_player.set_PositionY (6);
             }
             // Set the player

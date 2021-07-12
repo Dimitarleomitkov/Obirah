@@ -11,7 +11,7 @@ void CreateLevel6 (Gamespace& gamespace)
 	gamespace.clear_tiles ();
 
 	// Set the name of the level
-	gamespace.set_map_name("NameOfTheMap");
+	gamespace.set_map_name("Mitsko Woods");
 
 	// Set the height and width for the level
 	gamespace.set_map_width (25);
