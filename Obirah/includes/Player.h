@@ -26,6 +26,11 @@ class Player
 
         // Setting function for the name
         void set_name (std::string Name);
+        void set_Health (uint64_t Health);
+        void set_Agility (uint64_t Agility);
+        void set_Strength (uint64_t Strength);
+        void set_Intelligence (uint64_t Intelligence);
+        void set_Awareness (uint64_t Awareness);
 
         // Increase functions for the attributes of the player
         void IncreaseHealth (uint64_t amount);
@@ -46,7 +51,7 @@ class Player
         uint64_t get_Agility (void);
         uint64_t get_Strength (void);
         uint64_t get_Intelligence (void);
-        uint8_t get_Awareness (void);
+        uint16_t get_Awareness (void);
         std::string get_name (void);
 
     protected:
@@ -60,7 +65,7 @@ class Player
         uint64_t agility;
         uint64_t strength;
         uint64_t intelligence;
-        uint8_t awareness;
+        uint16_t awareness;
 
         // Name
         std::string name;

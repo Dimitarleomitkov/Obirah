@@ -36,6 +36,41 @@ void Player::set_name (std::string Name)
     name = Name;
 }
 
+void Player::set_PositionX (uint16_t x)
+{
+    positionX = x;
+}
+
+void Player::set_PositionY (uint16_t y)
+{
+    positionY = y;
+}
+
+void Player::set_Health (uint64_t Health)
+{
+    health = Health;
+}
+
+void Player::set_Agility (uint64_t Agility)
+{
+    agility = Agility;
+}
+
+void Player::set_Strength (uint64_t Strength)
+{
+    strength = Strength;
+}
+
+void Player::set_Intelligence (uint64_t Intelligence)
+{
+    intelligence = Intelligence;
+}
+
+void Player::set_Awareness (uint64_t Awareness)
+{
+    awareness = Awareness;
+}
+
 // Setting functions for the position of the player
 void Player::MoveUp(uint8_t numberOfPositions)
 {
@@ -55,16 +90,6 @@ void Player::MoveDown(uint8_t numberOfPositions)
 void Player::MoveRight(uint8_t numberOfPositions)
 {
     positionY += numberOfPositions;
-}
-
-void Player::set_PositionX (uint16_t x)
-{
-    positionX = x;
-}
-
-void Player::set_PositionY (uint16_t y)
-{
-    positionY = y;
 }
 
 // Increase functions for the attributes of the player
@@ -142,7 +167,7 @@ uint64_t Player::get_Intelligence (void)
     return intelligence;
 }
 
-uint8_t Player::get_Awareness (void)
+uint16_t Player::get_Awareness (void)
 {
     return awareness;
 }

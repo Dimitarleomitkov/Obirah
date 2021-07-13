@@ -29,6 +29,7 @@ class Gamespace
         void clear_tiles (void);
 
         // Get functions
+        bool get_game_started (void);
         Player get_player (void);
         uint16_t get_map_level (void);
         std::string get_map_name (void);
@@ -44,6 +45,7 @@ class Gamespace
         std::string get_message (void);
 
         // Set functions
+        void set_game_started (bool Game_Started);
         void set_player (Player player);
         void set_map_level (uint16_t new_map_level);
         void set_map_name (std::string Name);
@@ -58,6 +60,8 @@ class Gamespace
 
     protected:
     private:
+        // Flag to indicate whether the game has started
+        bool game_started;
         // The player
         Player hero;
         // The map_level the world is currently in
@@ -77,7 +81,9 @@ class Gamespace
         // Message for the player
         std::string message;
         // All the Enemies in a level
-        // ENEMY* enemies;
+        // ENEMY* enemies;/
+        // Story counter
+        // uint16_t story_stage;
 };
 
 void CreateLevel1 (Gamespace& gamespace);

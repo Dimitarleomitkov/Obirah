@@ -7,6 +7,7 @@
 //ctors
 Gamespace::Gamespace ()
 {
+    game_started = false;
     map_level = 1;
     map_tiles = nullptr;
     map_width = 0;
@@ -147,6 +148,11 @@ void Gamespace::clear_tiles (void)
 }
 
 // Getters
+bool Gamespace::get_game_started (void)
+{
+    return game_started;
+}
+
 Player Gamespace::get_player (void)
 {
     return hero;
@@ -213,6 +219,11 @@ std::string Gamespace::get_message (void)
 }
 
 // Setters
+void Gamespace::set_game_started (bool Game_Started)
+{
+    game_started = Game_Started;
+}
+
 void Gamespace::set_player (Player player)
 {
     hero = player;

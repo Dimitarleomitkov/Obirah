@@ -8,6 +8,8 @@ enum e_Commands_Menu {
     MENU_INVALID = 5,
 };
 
-void draw_menu (bool game_started);
-bool Menu_Input (e_Commands& game_command, bool& game_started);
+void draw_menu (Gamespace& gamespace);
+bool Menu_Input (e_Commands& game_command, Gamespace& game_started);
 e_Commands_Menu ParseMenuInput (char input);
+void save_game (Gamespace& gamespace);
+void load_game (Gamespace& gamespace);

@@ -13,12 +13,10 @@ int main ()
     e_Commands ingame_command = GAME_MENU;
     // Create the world
     static Gamespace gamespace;
-    // Game started flag
-    static bool game_started = 0;
 
     while (exit_flag == 0) {
-        draw_menu (game_started);
-        exit_flag = Menu_Input (ingame_command, game_started);
+        draw_menu (gamespace);
+        exit_flag = Menu_Input (ingame_command, gamespace);
         while (ingame_command != GAME_MENU) {
            // The world ticks once
             worldFrame (gamespace);

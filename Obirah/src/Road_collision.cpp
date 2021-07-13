@@ -77,7 +77,7 @@ bool Road_collide (e_Directions direction, Gamespace& gamespace)
                         case 1 * 33 + 5:
                             gamespace.set_map_level (2);
                             dummy_player.set_PositionX (29);
-                            dummy_player.set_PositionY (dummy_player.PositionY() - 18);
+                            dummy_player.set_PositionY (dummy_player.PositionY() + 22);
                             // Set the player
                             gamespace.set_player (dummy_player);
                             gamespace.generate_level ();
@@ -112,7 +112,7 @@ bool Road_collide (e_Directions direction, Gamespace& gamespace)
                         case 0 * 33 + 5:
                             gamespace.set_map_level (2);
                             dummy_player.set_PositionX (29);
-                            dummy_player.set_PositionY (dummy_player.PositionY() - 18 - 1);
+                            dummy_player.set_PositionY (dummy_player.PositionY() + 22 - 1);
                             // Set the player
                             gamespace.set_player (dummy_player);
                             gamespace.generate_level ();
@@ -148,7 +148,7 @@ bool Road_collide (e_Directions direction, Gamespace& gamespace)
                         case 0 * 33 + 4:
                             gamespace.set_map_level (2);
                             dummy_player.set_PositionX (29);
-                            dummy_player.set_PositionY (dummy_player.PositionY() - 18 + 1);
+                            dummy_player.set_PositionY (dummy_player.PositionY() + 22 + 1);
                             // Set the player
                             gamespace.set_player (dummy_player);
                             gamespace.generate_level ();
