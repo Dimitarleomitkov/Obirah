@@ -133,7 +133,7 @@ e_Commands PlayerInput(Gamespace& gamespace)
             return command;
         // DEBUG commands
         case NEXT_LEVEL:
-            if (gamespace.get_map_level() == 6) {
+            if (gamespace.get_map_level() == 7) {
                 break;
             }
             gamespace.set_map_level (gamespace.get_map_level() + 1);

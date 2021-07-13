@@ -45,6 +45,9 @@ void Gamespace::generate_level (void)
         case 6:
             CreateLevel6 (*this);
             break;
+        case 7:
+            CreateLevel7 (*this);
+            break;
         default:
             std::cout << "UNSUPPORTED LEVEL!" << std::endl;
             break;
