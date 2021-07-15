@@ -211,6 +211,20 @@ NPChar Gamespace::get_NPC (uint16_t index)
     return npcs[index];
 }
 
+NPChar Gamespace::get_NPC (uint16_t X, uint16_t Y)
+{
+    for (int i = 0; i < number_of_npcs; ++i) {
+        if (X == npcs[i].get_position_x()) {
+            if (Y == npcs[i].get_position_y()) {
+                return npcs[i];
+            }
+        }
+    }
+
+    NPChar dummy;
+    return dummy;
+}
+
 uint16_t Gamespace::get_number_of_npcs (void)
 {
     return number_of_npcs;

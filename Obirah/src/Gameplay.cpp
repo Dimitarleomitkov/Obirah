@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "../includes/Menu.h"
 
 void worldFrame (Gamespace& gamespace) {
     // Clear the screen
@@ -32,10 +33,6 @@ void npc_move (Gamespace& gamespace)
     // Go through the NPCs
     for (int i = 0; i < gamespace.get_number_of_npcs(); ++i) {
         NPChar dummy = gamespace.get_NPC (i);
-        // Check if the NPC is engaged
-        if (dummy.get_engaged_flag()) {
-            continue;
-        }
 
         // Roll random number from 1 to 10 to know whether to move
         random_number = rand() % 10 + 1;
@@ -295,7 +292,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
             // Something has gone terribly wrong
             break;
         case NPC:
-
+            NPC_collide(direction, gamespace);
             return true;
         case ENEMY:
 
@@ -338,4 +335,36 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
             return false;
     }
     return false;
+}
+
+bool NPC_reply (int& selector_position, int n_menu_items)
+{
+    e_Commands_Menu command = MENU_INVALID;
+    char input;
+
+    // Get an input until it is a proper one
+    do {
+        input = tolower (getch());
+        command = ParseMenuInput(input);
+    } while (command == MENU_INVALID);
+
+    bool return_value = false;
+
+    switch (command) {
+        case MENU_UP:
+            if (selector_position > 0) {
+                --selector_position;
+            }
+            break;
+        case MENU_DOWN:
+            if (selector_position < n_menu_items - 1) {
+                ++selector_position;
+            }
+            break;
+        case MENU_SELECT:
+            return_value = true;
+        default:
+            break;
+    }
+    return return_value;
 }

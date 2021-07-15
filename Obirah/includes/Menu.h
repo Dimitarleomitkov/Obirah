@@ -1,3 +1,6 @@
+#ifndef MENU_H
+#define MENU_H
+
 #include "Gameplay.h"
 
 enum e_Commands_Menu {
@@ -13,3 +16,5 @@ bool Menu_Input (e_Commands& game_command, Gamespace& game_started);
 e_Commands_Menu ParseMenuInput (char input);
 void save_game (Gamespace& gamespace);
 void load_game (Gamespace& gamespace);
+
+#endif // MENU_H

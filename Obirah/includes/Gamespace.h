@@ -41,6 +41,7 @@ class Gamespace
         uint8_t get_map_height (void);
         NPChar* get_NPCs (void);
         NPChar get_NPC (uint16_t index);
+        NPChar get_NPC (uint16_t X, uint16_t Y);
         uint16_t get_number_of_npcs (void);
         std::string get_message (void);
 

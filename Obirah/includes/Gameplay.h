@@ -37,5 +37,11 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace);
 bool Door_collide (e_Directions direction, Gamespace& gamespace);
 bool find_key (Gamespace& gamespace);
 bool Road_collide (e_Directions direction, Gamespace& gamespace);
+bool NPC_collide (e_Directions direction, Gamespace& gamespace);
+void Nira_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
+std::string set_player_name_event ();
+void Jack_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
+void Rick_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
+bool NPC_reply (int& selector_position, int n_menu_items);
 
 #endif // GAMEPLAY_H

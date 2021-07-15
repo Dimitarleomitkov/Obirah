@@ -19,9 +19,9 @@ NPChar::NPChar (uint16_t x, uint16_t y, std::string Name)
 // Copy ctor
 NPChar::NPChar (const NPChar& old_npc)
 {
-    engaged_flag = old_npc.engaged_flag;
     position_x = old_npc.position_x;
     position_y = old_npc.position_y;
+    name = old_npc.name;
 }
 
 //dtor
@@ -31,10 +31,6 @@ NPChar::~NPChar ()
 }
 
 // Getters
-bool NPChar::get_engaged_flag (void)
-{
-    return engaged_flag;
-}
 
 uint16_t NPChar::get_position_x (void)
 {
@@ -52,10 +48,6 @@ std::string NPChar::get_name (void)
 }
 
 // Setters
-void NPChar::set_engaged_flag (bool flag)
-{
-    engaged_flag = flag;
-}
 
 void NPChar::set_position_x (uint16_t x)
 {
