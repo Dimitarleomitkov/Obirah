@@ -15,7 +15,10 @@ enum e_TileType{
     DOWNWALL = 10,
     WATER = 11,
     STONE = 12,
-    UNKNOWN = 13
+    LEFTSIDEWALL = 13,
+    RIGHTSIDEWALL = 14,
+    WINDOW = 15,
+    UNKNOWN = 16
 };
 
 #endif // TERRAIN_H

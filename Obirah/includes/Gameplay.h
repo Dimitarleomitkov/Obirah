@@ -36,7 +36,7 @@ void Player_move_down (Gamespace& the_player);
 void Player_move_right (Gamespace& the_player);
 
 bool check_collision (e_Directions direction, Gamespace& gamespace);
-bool Empty_collide (Gamespace& gamespace);
+bool Empty_collide (e_Directions direction, Gamespace& gamespace);
 bool Gate_collide (e_Directions direction, Gamespace& gamespace);
 bool Door_collide (e_Directions direction, Gamespace& gamespace);
 bool find_key (Gamespace& gamespace);

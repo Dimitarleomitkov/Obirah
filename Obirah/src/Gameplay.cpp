@@ -289,11 +289,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
     // Handle the collision
     switch (collision_tile) {
         case EMPTY:
-            if (Empty_collide(gamespace)) {
-                return true;
-            } else {
-                return false;
-            }
+            return Empty_collide(direction, gamespace);
         case PLAYER:
             // Something has gone terribly wrong
             break;
@@ -316,12 +312,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
             gamespace.set_message ("There is a lovely flowery bush in the way.\n");
             return true;
         case ROAD:
-            if (Road_collide(direction, gamespace)) {
-                return true;
-            } else {
-                return false;
-            }
-            return false;
+            return Road_collide(direction, gamespace);
         case WALL:
             gamespace.set_message ("There is a wall in the way.\n");
             return true;
@@ -329,7 +320,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
             gamespace.set_message ("There is a wall in the way.\n");
             return true;
         case WATER:
-
+            gamespace.set_message ("There are deep waters ahead.\n");
             return true;
         case STONE:
             gamespace.set_message ("There is a boulder in the way.\n");
@@ -611,7 +602,7 @@ Equipment_Options:
         std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
         << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
         << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
-        << "Inventory->Consumables:" << std::endl;
+        << "Inventory->Equipment:" << std::endl;
 
         // Player options
         for (i = 0; i < selector_position; ++i) {

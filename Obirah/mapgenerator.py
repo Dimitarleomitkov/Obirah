@@ -52,6 +52,12 @@ def notation_to_obj(tile_obj):
 		return "WATER"
 	elif (tile_obj == "n"):
 		return "STONE"
+	elif (tile_obj == "\\"):
+		return "LEFTSIDEWALL"
+	elif (tile_obj == "/"):
+		return "RIGHTSIDEWALL"
+	elif (tile_obj == "o"):
+		return "WINDOW"
 	elif (tile_obj == "?"):
 		return "UNKNOWN"
 

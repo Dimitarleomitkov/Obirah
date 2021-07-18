@@ -1,0 +1,35 @@
+* T * T T T T T T T T * T * T T T T T T T T *
+| _ _ _ |   H H D             N         D H T
+| N     |   H   | _ T _ T _ T _ T _ T _ T H T
+|       D H H H H H H H H H H H H H H H H H *
+| _ _ _ |   H   _ _ _ _ H   _ _ _ _     H   T
+|       |   H H D   N | H H D   N | _ _ D _ *
+|       |   H   | _ _ _ H   | _ _ _ |     | T
+| N     D H H H H H H H H H H H H H D   N | T
+| _ _ _ |   H _ _ _ _   H   _ _ _ _ |     | T
+|           H | N   D H H H D   N |     N | T
+T           H | _ _ _   H   | _ _ _ _ _ _ | *
+*     N     H H H H H H H   T T T T T T T T *
+~ _ _ _ _ | _ _ _       H D                 *
+~ ~ \ o o   o o /       H   T               T
+~ ~ ~ _ _ _ _ /         H   T       N       *
+~ ~ ~ ~ ~ ~ \     N     H   T               *
+~ ~ ~ ~ ~ ~ ~ \         H   T               *
+~ ~ ~ ~ ~ ~ ~ ~ n * | * H * | *   T * T T T *
+~ ~ ~ ~ ~ ~ ~ ~ ~ n n   H     n n T       ~  
+~ ~ ~ ~ ~ ~ ~ ~ ~ n n   H     n ~ ~       ~ ~
+~ ~ ~ ~ ~ ~ ~ ~ ~ n n   H     n n ~ ~   ~ ~  
+~ ~ ~ ~ ~ ~ ~ ~ n * | * H * | * n n ~ ~ ~    
+~ ~ ~ ~ ~ ~ ~           H         n n        
+~ ~ ~ ~ ~ ~         N   H         n n n n    
+~ ~ ~ ~ ~ _ _ _ | _ _ _ H         n n n *    
+~ ~ ~ ~ ~ \ o o   o o / H     n   n n n      
+~ ~ ~ ~ ~ ~ _ _ _ _ /   H       n n n        
+~ ~ ~ ~ ~ ~ ~           H H H H H n H H H    
+~ ~ ~ ~ ~ ~ ~ ~ *               n n n        
+~ ~ ~ ~ ~ ~ ~ ~ ~   N         n   n n n *    
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~               n T n      
+~ ~ ~ ~ ~ ~ ~ ~ ~ _ _ _ | _ _ _   n n T      
+~ ~ ~ ~ ~ ~ ~ ~ ~ \ o o   o o /   n n        
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ _ _ _ _ /     n          
+~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~       n T T n T n

@@ -10,6 +10,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
     uint16_t current_tile_index = dummy_player.PositionX() * gamespace.get_map_width() + dummy_player.PositionY();
 
     switch (current_map_level) {
+        // Mitsko
         case 1:
             gamespace.set_map_level (2);
             dummy_player.set_PositionX (0);
@@ -22,6 +23,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
             gamespace.set_player (dummy_player);
             gamespace.generate_level ();
             break;
+        // Mitsko Forest
         case 2:
             gamespace.set_map_level (1);
             dummy_player.set_PositionX (11);
@@ -34,8 +36,9 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
             gamespace.set_player (dummy_player);
             gamespace.generate_level ();
             break;
-        case 4:
-            gamespace.set_map_level (5);
+        // Mitsko Hill
+        case 6:
+            gamespace.set_map_level (7);
             dummy_player.set_PositionX (11);
             if (direction == D_LEFT) {
                 dummy_player.set_PositionY (dummy_player.PositionY() + 9 - 1);
@@ -48,7 +51,8 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
             gamespace.set_player (dummy_player);
             gamespace.generate_level ();
             break;
-        case 5:
+        // Rowue
+        case 7:
             switch (direction) {
                 case D_UP:
                     // Right exit
@@ -64,7 +68,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
                         case 11 * 43 + 33:
                         case 11 * 43 + 34:
                         case 11 * 43 + 36:
-                            gamespace.set_map_level (4);
+                            gamespace.set_map_level (6);
                             dummy_player.set_PositionX (0);
                             dummy_player.set_PositionY (dummy_player.PositionY() - 9 - 1);
                             // Set the player
@@ -86,7 +90,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
                         case 10 * 43 + 33:
                         case 10 * 43 + 35:
                         case 10 * 43 + 36:
-                            gamespace.set_map_level (4);
+                            gamespace.set_map_level (6);
                             dummy_player.set_PositionX (0);
                             dummy_player.set_PositionY (dummy_player.PositionY() - 9);
                             // Set the player
@@ -108,7 +112,7 @@ bool Gate_collide (e_Directions direction, Gamespace& gamespace)
                         case 11 * 43 + 32:
                         case 11 * 43 + 34:
                         case 11 * 43 + 35:
-                            gamespace.set_map_level (4);
+                            gamespace.set_map_level (6);
                             dummy_player.set_PositionX (0);
                             dummy_player.set_PositionY (dummy_player.PositionY() - 9 + 1);
                             // Set the player

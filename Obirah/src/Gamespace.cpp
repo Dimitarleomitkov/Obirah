@@ -28,27 +28,37 @@ Gamespace::~Gamespace()
 void Gamespace::generate_level (void)
 {
     switch (map_level) {
+        // Mitsko
         case 1:
             CreateLevel1 (*this);
             break;
+        // Mitsko Forest
         case 2:
             CreateLevel2 (*this);
             break;
+        // Mitsko Bridge
         case 3:
             CreateLevel3 (*this);
             break;
+        // Mitsko Woods
         case 4:
             CreateLevel4 (*this);
             break;
+        // Mitsko River
         case 5:
             CreateLevel5 (*this);
             break;
+        // Mitsko Hill
         case 6:
             CreateLevel6 (*this);
             break;
+        // Rowue
         case 7:
             CreateLevel7 (*this);
             break;
+        // Obirah
+        case 99:
+            CreateLevel99 (*this);
         default:
             std::cout << "UNSUPPORTED LEVEL!" << std::endl;
             break;
@@ -116,6 +126,15 @@ void Gamespace::draw_world (void)
                     break;
                 case STONE:
                     std::cout << "n";
+                    break;
+                case LEFTSIDEWALL:
+                    std::cout << "\\";
+                    break;
+                case RIGHTSIDEWALL:
+                    std::cout << "/";
+                    break;
+                case WINDOW:
+                    std::cout << "o";
                     break;
                 case UNKNOWN:
                     std::cout << "?";
