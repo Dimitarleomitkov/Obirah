@@ -14,6 +14,7 @@ Gamespace::Gamespace ()
     map_height = 0;
     npcs = nullptr;
     number_of_npcs = 0;
+    story_stage = 0;
     generate_level ();
 }
 
@@ -235,6 +236,11 @@ std::string Gamespace::get_message (void)
     return message;
 }
 
+uint16_t Gamespace::get_story_stage (void)
+{
+    return story_stage;
+}
+
 // Setters
 void Gamespace::set_game_started (bool Game_Started)
 {
@@ -299,4 +305,9 @@ void Gamespace::set_NPC (NPChar* Npc, uint16_t index)
 void Gamespace::set_message (std::string new_msg)
 {
     message = new_msg;
+}
+
+void Gamespace::set_story_stage (uint16_t stage)
+{
+    story_stage = stage;
 }

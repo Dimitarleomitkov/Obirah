@@ -10,9 +10,10 @@ enum e_Commands {
     LEFT = 3,
     DOWN = 4,
     RIGHT = 5,
+    CHARACTER_WINDOW = 6,
     // DEBUG commands
-    NEXT_LEVEL = 6,
-    PREVIOUS_LEVEL = 7
+    NEXT_LEVEL = 7,
+    PREVIOUS_LEVEL = 8
 };
 
 enum e_Directions {
@@ -25,12 +26,15 @@ enum e_Directions {
 void clear_screen (void);
 void worldFrame (Gamespace& gamespace);
 void npc_move (Gamespace& gamespace);
+
 e_Commands PlayerInput (Gamespace& gamespace);
 e_Commands ParseInput (char input);
+
 void Player_move_up (Gamespace& the_player);
 void Player_move_left (Gamespace& the_player);
 void Player_move_down (Gamespace& the_player);
 void Player_move_right (Gamespace& the_player);
+
 bool check_collision (e_Directions direction, Gamespace& gamespace);
 bool Empty_collide (Gamespace& gamespace);
 bool Gate_collide (e_Directions direction, Gamespace& gamespace);
@@ -38,10 +42,20 @@ bool Door_collide (e_Directions direction, Gamespace& gamespace);
 bool find_key (Gamespace& gamespace);
 bool Road_collide (e_Directions direction, Gamespace& gamespace);
 bool NPC_collide (e_Directions direction, Gamespace& gamespace);
+
 void Nira_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
-std::string set_player_name_event ();
 void Jack_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
 void Rick_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
-bool NPC_reply (int& selector_position, int n_menu_items);
+
+std::string set_player_name_event ();
+void initial_Rick_RP_window (NPChar& dummy_NPC, Gamespace& gamespace);
+
+bool Selector (int& selector_position, int n_menu_items);
+
+void Character_window (Gamespace& gamespace);
+void Inventory_window (Player& dummy_player);
+void Consumables_window (Player& dummy_player);
+void Craftables_window (Player& dummy_player);
+void Equipment_window (Player& dummy_player);
 
 #endif // GAMEPLAY_H

@@ -128,6 +128,9 @@ e_Commands PlayerInput(Gamespace& gamespace)
             break;
         case GAME_MENU:
             return command;
+        case CHARACTER_WINDOW:
+            Character_window (gamespace);
+            break;
         // DEBUG commands
         case NEXT_LEVEL:
             if (gamespace.get_map_level() == 7) {
@@ -163,6 +166,8 @@ e_Commands ParseInput (char input)
             return RIGHT;
         case 'm':
             return GAME_MENU;
+        case 'c':
+            return CHARACTER_WINDOW;
         // DEBUG commands
         case '>':
             return NEXT_LEVEL;
@@ -277,6 +282,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
             collision_tile = gamespace.get_map_tile(x_pos * gamespace.get_map_width() + y_pos);
             break;
         default :
+            collision_tile = UNKNOWN;
             break;
     }
 
@@ -337,7 +343,7 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
     return false;
 }
 
-bool NPC_reply (int& selector_position, int n_menu_items)
+bool Selector (int& selector_position, int n_menu_items)
 {
     e_Commands_Menu command = MENU_INVALID;
     char input;
@@ -352,12 +358,16 @@ bool NPC_reply (int& selector_position, int n_menu_items)
 
     switch (command) {
         case MENU_UP:
-            if (selector_position > 0) {
+            if (selector_position == 0) {
+                selector_position = n_menu_items - 1;
+            } else {
                 --selector_position;
             }
             break;
         case MENU_DOWN:
-            if (selector_position < n_menu_items - 1) {
+            if (selector_position == n_menu_items - 1) {
+                selector_position = 0;
+            } else {
                 ++selector_position;
             }
             break;
@@ -367,4 +377,259 @@ bool NPC_reply (int& selector_position, int n_menu_items)
             break;
     }
     return return_value;
+}
+
+void Character_window (Gamespace& gamespace)
+{
+    // Menu options
+    int menu_length = 5;
+    std::string menu_items[menu_length] = {"Inventory", "Skills", "Stats", "Journal", "Back"};
+
+    int i = 0;
+    int selector_position = 0;
+    Player dummy_player = gamespace.get_player ();
+
+Player_Options:
+    do {
+        clear_screen ();
+
+        // Name of the Player, HP / max HP and XP / XP for next level
+        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
+        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
+        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl;
+
+        // Player options
+        for (i = 0; i < selector_position; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+        std::cout << menu_items[i] << " <" << std::endl;
+        ++i;
+        for (; i < menu_length; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+    } while (!Selector(selector_position, menu_length));
+
+    switch (selector_position) {
+        // Inventory
+        case 0:
+            Inventory_window (dummy_player);
+            goto Player_Options;
+        // Skills
+        case 1:
+            goto Player_Options;
+        // Stats
+        case 2:
+            goto Player_Options;
+        // Journal
+        case 3:
+            goto Player_Options;
+        // Back
+        case 4:
+            break;
+        default:
+            break;
+    }
+}
+
+void Inventory_window (Player& dummy_player)
+{
+    // Menu options
+    int menu_length = 4;
+    std::string menu_items[menu_length] = {"Consumables", "Craftables", "Equipment", "Back"};
+
+    int i = 0;
+    int selector_position = 0;
+
+Inventory_Options:
+    do {
+        clear_screen ();
+
+        // Name of the Player, HP / max HP and XP / XP for next level
+        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
+        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
+        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
+        << "Inventory:" << std::endl;
+
+        // Player options
+        for (i = 0; i < selector_position; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+        std::cout << menu_items[i] << " <" << std::endl;
+        ++i;
+        for (; i < menu_length; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+    } while (!Selector(selector_position, menu_length));
+
+    switch (selector_position) {
+        // Consumables
+        case 0:
+            Consumables_window (dummy_player);
+            goto Inventory_Options;
+        // Craftables
+        case 1:
+            Craftables_window (dummy_player);
+            goto Inventory_Options;
+        // Equipment
+        case 2:
+            Equipment_window (dummy_player);
+            goto Inventory_Options;
+        // Back
+        case 3:
+            break;
+        default:
+            break;
+    }
+}
+
+void Consumables_window (Player& dummy_player)
+{
+    // Menu options
+    int menu_length = dummy_player.get_inventory().get_number_of_consumables() + 1;
+    std::string menu_items[menu_length];
+
+    menu_items[0] = "Back";
+
+    for (int i = 1; i < menu_length; ++i) {
+        std::string menu_item = dummy_player.get_inventory().get_consumable(i - 1).get_name();
+        menu_item += " ";
+        menu_item += std::to_string(dummy_player.get_inventory().get_consumable(i - 1).get_quantity());
+        menu_item += " / ";
+        menu_item += std::to_string(dummy_player.get_inventory().get_consumable(i - 1).get_max_quantity());
+
+        menu_items[i] = menu_item;
+    }
+
+    int i = 0;
+    int selector_position = 0;
+
+Consumables_Options:
+    do {
+        clear_screen ();
+
+        // Name of the Player, HP / max HP and XP / XP for next level
+        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
+        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
+        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
+        << "Inventory->Consumables:" << std::endl;
+
+        // Player options
+        for (i = 0; i < selector_position; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+        std::cout << menu_items[i] << " <" << std::endl;
+        ++i;
+        for (; i < menu_length; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+    } while (!Selector(selector_position, menu_length));
+
+    switch (selector_position) {
+        // Back
+        case 0:
+            break;
+        // Item
+        default:
+            goto Consumables_Options;
+    }
+}
+
+void Craftables_window (Player& dummy_player)
+{
+    // Menu options
+    int menu_length = dummy_player.get_inventory().get_number_of_craftables() + 1;
+    std::string menu_items[menu_length];
+
+    menu_items[0] = "Back";
+
+    for (int i = 1; i < menu_length; ++i) {
+        std::string menu_item = dummy_player.get_inventory().get_craftable(i - 1).get_name();
+        menu_item += " ";
+        menu_item += std::to_string(dummy_player.get_inventory().get_craftable(i - 1).get_quantity());
+        menu_item += " / ";
+        menu_item += std::to_string(dummy_player.get_inventory().get_craftable(i - 1).get_max_quantity());
+
+        menu_items[i] = menu_item;
+    }
+
+    int i = 0;
+    int selector_position = 0;
+
+Craftables_Options:
+    do {
+        clear_screen ();
+
+        // Name of the Player, HP / max HP and XP / XP for next level
+        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
+        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
+        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
+        << "Inventory->Craftables:" << std::endl;
+
+        // Player options
+        for (i = 0; i < selector_position; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+        std::cout << menu_items[i] << " <" << std::endl;
+        ++i;
+        for (; i < menu_length; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+    } while (!Selector(selector_position, menu_length));
+
+    switch (selector_position) {
+        // Back
+        case 0:
+            break;
+        // Item
+        default:
+            goto Craftables_Options;
+    }
+}
+
+void Equipment_window (Player& dummy_player)
+{
+    // Menu options
+    int menu_length = dummy_player.get_inventory().get_number_of_equipment() + 1;
+    std::string menu_items[menu_length];
+
+    menu_items[0] = "Back";
+
+    for (int i = 1; i < menu_length; ++i) {
+        std::string menu_item = dummy_player.get_inventory().get_equipment(i - 1).get_name();
+
+        menu_items[i] = menu_item;
+    }
+
+    int i = 0;
+    int selector_position = 0;
+
+Equipment_Options:
+    do {
+        clear_screen ();
+
+        // Name of the Player, HP / max HP and XP / XP for next level
+        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
+        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
+        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
+        << "Inventory->Consumables:" << std::endl;
+
+        // Player options
+        for (i = 0; i < selector_position; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+        std::cout << menu_items[i] << " <" << std::endl;
+        ++i;
+        for (; i < menu_length; ++i) {
+            std::cout << menu_items[i] << std::endl;
+        }
+    } while (!Selector(selector_position, menu_length));
+
+    switch (selector_position) {
+        // Back
+        case 0:
+            break;
+        // Item
+        default:
+            goto Equipment_Options;
+    }
 }

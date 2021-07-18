@@ -3,13 +3,17 @@
 // ctor
 Player::Player()
 {
+    level = 1;
     positionX = 6;
     positionY = 6;
     health = 1;
+    max_health = 1;
     agility = 1;
     strength = 1;
     intelligence = 1;
     awareness = 1;
+    xp = 0;
+    xp_next_level = 10;
     name = "Unknown";
 }
 
@@ -31,6 +35,11 @@ uint16_t Player::PositionY(void)
 }
 
 // Setting function for the name
+void Player::set_level (uint16_t Level)
+{
+    level = Level;
+}
+
 void Player::set_name (std::string Name)
 {
     name = Name;
@@ -51,6 +60,11 @@ void Player::set_Health (uint64_t Health)
     health = Health;
 }
 
+void Player::set_maxHealth (uint64_t Health)
+{
+    max_health = Health;
+}
+
 void Player::set_Agility (uint64_t Agility)
 {
     agility = Agility;
@@ -69,6 +83,16 @@ void Player::set_Intelligence (uint64_t Intelligence)
 void Player::set_Awareness (uint64_t Awareness)
 {
     awareness = Awareness;
+}
+
+void Player::set_xp (uint64_t XP)
+{
+    xp = XP;
+}
+
+void Player::set_xp_next_level (uint64_t XP)
+{
+    xp_next_level = XP;
 }
 
 // Setting functions for the position of the player
@@ -118,6 +142,10 @@ void Player::IncreaseAwareness (uint8_t amount)
     awareness += amount;
 }
 
+void Player::IncreaseXP (uint64_t amount)
+{
+    xp += amount;
+}
 
 // Decrease functions for the attributes of the player
 void Player::DecreaseHealth (uint64_t amount)
@@ -145,11 +173,25 @@ void Player::DecreaseAwareness (uint8_t amount)
     awareness -= amount;
 }
 
+void Player::DecreaseXP (uint64_t amount)
+{
+    xp -= amount;
+}
 
 // Getting functions for the attributes of the player
+uint16_t Player::get_level (void)
+{
+    return level;
+}
+
 uint64_t Player::get_Health (void)
 {
     return health;
+}
+
+uint64_t Player::get_maxHealth (void)
+{
+    return max_health;
 }
 
 uint64_t Player::get_Agility (void)
@@ -175,4 +217,34 @@ uint16_t Player::get_Awareness (void)
 std::string Player::get_name (void)
 {
     return name;
+}
+
+uint64_t Player::get_xp (void)
+{
+    return xp;
+}
+
+uint64_t Player::get_xp_next_level (void)
+{
+    return xp_next_level;
+}
+
+Inventory Player::get_inventory (void)
+{
+    return inventory;
+}
+
+void Player::inventory_add_consumable (Consumable& item)
+{
+    inventory.add_consumable (item);
+}
+
+void Player::inventory_add_craftable (Craftable& item)
+{
+    inventory.add_craftable (item);
+}
+
+void Player::inventory_add_equipment (Equipment& item)
+{
+    inventory.add_equipment (item);
 }

@@ -34,7 +34,7 @@ NPC_Dialogue:
         for (; i < menu_length; ++i) {
             std::cout << menu_items[i] << std::endl;
         }
-    } while (!NPC_reply(selector_position, menu_length));
+    } while (!Selector(selector_position, menu_length));
 
     switch (selector_position) {
         // "Who are you?"

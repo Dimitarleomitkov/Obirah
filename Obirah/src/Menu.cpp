@@ -56,12 +56,16 @@ bool Menu_Input (e_Commands& game_command, Gamespace& gamespace)
 
     switch (command) {
         case MENU_UP:
-            if (selector_position > 0) {
+            if (selector_position == 0) {
+                selector_position = 3;
+            } else {
                 --selector_position;
             }
             break;
         case MENU_DOWN:
-            if (selector_position < 3) {
+            if (selector_position == 3) {
+                selector_position = 0;
+            } else {
                 ++selector_position;
             }
             break;

@@ -44,6 +44,7 @@ class Gamespace
         NPChar get_NPC (uint16_t X, uint16_t Y);
         uint16_t get_number_of_npcs (void);
         std::string get_message (void);
+        uint16_t get_story_stage (void);
 
         // Set functions
         void set_game_started (bool Game_Started);
@@ -58,13 +59,14 @@ class Gamespace
         void set_NPCs (NPChar* NPCs, unsigned int length);
         void set_NPC (NPChar* Npc, uint16_t index);
         void set_message (std::string new_msg);
+        void set_story_stage (uint16_t stage);
 
     protected:
     private:
-        // Flag to indicate whether the game has started
-        bool game_started;
         // The player
         Player hero;
+        // Flag to indicate whether the game has started
+        bool game_started;
         // The map_level the world is currently in
         uint16_t map_level;
         // Name of the map_level
@@ -84,7 +86,7 @@ class Gamespace
         // All the Enemies in a level
         // ENEMY* enemies;/
         // Story counter
-        // uint16_t story_stage;
+        uint16_t story_stage;
 };
 
 void CreateLevel1 (Gamespace& gamespace);

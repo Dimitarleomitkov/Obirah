@@ -43,7 +43,7 @@ NPC_Dialogue:
         for (; i < menu_length; ++i) {
             std::cout << menu_items[i] << std::endl;
         }
-    } while (!NPC_reply(selector_position, menu_length));
+    } while (!Selector(selector_position, menu_length));
 
     switch (selector_position) {
         // "Greetings."
@@ -65,8 +65,10 @@ NPC_Dialogue:
         case 1:
             NPC_speech = "You are catching me in the middle of preparing a meal for my family."
             " They should be back shortly.\nJack is gathering up some wood nearby, while Rick is keeping watch since last night."
-            " These woods are not as kind when the sun goes behind the mountains.\n\n"
-            "You should try and speak with Rick. He seemed to have a few questions for you.";
+            " These woods are not as kind when the sun goes behind the mountains.";
+            if (gamespace.get_story_stage() == 0) {
+                NPC_speech.append ("\n\nYou should try and speak with Rick. He seemed to have a few questions for you.");
+            }
             goto NPC_Dialogue;
         // Back
         case 2:
@@ -90,7 +92,7 @@ std::string set_player_name_event ()
     std::cout << "\"...I can't seem to remember...\" <" << std::endl;
     // Get input from user
     int selector = 0;
-    while (!NPC_reply(selector, 1));
+    while (!Selector(selector, 1));
     NPC_speech = "This is horrible!...\n...How about you choose how we can call you and we start from there?";
 
     system ("cls");
