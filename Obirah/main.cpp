@@ -22,6 +22,10 @@ int main ()
             worldFrame (gamespace);
             // Take an input from the player
             ingame_command = PlayerInput (gamespace);
+            // Check if player is dead
+            if (gamespace.get_player().get_Health() == 0) {
+                ingame_command = restart_game (gamespace);
+            }
         }
     }
 

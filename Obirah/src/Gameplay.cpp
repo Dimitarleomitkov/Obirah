@@ -633,3 +633,11 @@ Equipment_Options:
             goto Equipment_Options;
     }
 }
+
+e_Commands restart_game (Gamespace& gamespace)
+{
+    Gamespace new_gamespace;
+    gamespace = new_gamespace;
+
+    return GAME_MENU;
+}

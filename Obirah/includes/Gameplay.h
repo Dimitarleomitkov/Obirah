@@ -58,4 +58,6 @@ void Consumables_window (Player& dummy_player);
 void Craftables_window (Player& dummy_player);
 void Equipment_window (Player& dummy_player);
 
+e_Commands restart_game (Gamespace& gamespace);
+
 #endif // GAMEPLAY_H

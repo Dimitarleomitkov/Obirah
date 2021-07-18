@@ -166,8 +166,14 @@ NPC_Dialogue_3:
             goto NPC_Dialogue_3;
         // "I am here to destroy you all!"
         case 1:
-            NPC_speech = "Shame...";
-            goto NPC_Dialogue_3;
+            clear_screen ();
+            std::cout << dummy_NPC.get_name() << ":" << std::endl;
+            std::cout << "Shame..." << std::endl;
+            std::cout << std::endl << "You have been stabbed." << std::endl;
+            getch();
+            dummy_player.set_Health (0);
+            gamespace.set_player (dummy_player);
+            break;
         // Back
         case 2:
             break;

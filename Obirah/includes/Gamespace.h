@@ -6,6 +6,7 @@
 #include "Npc.h"
 #include "Terrain.h"
 #include "Player.h"
+#include "Enemy.h"
 
 class Gamespace
 {
@@ -84,7 +85,7 @@ class Gamespace
         // Message for the player
         std::string message;
         // All the Enemies in a level
-        // ENEMY* enemies;/
+        std::vector<Enemy> enemies;
         // Story counter
         uint16_t story_stage;
 };

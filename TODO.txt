@@ -1,0 +1,12 @@
+The name of the hero should not contain certain symbols.
+Level 6 and 7 need to be made playable.
+Enemies need to be introduced into the game.
+Save Game should be revisited.
+Load Game should be revisited.
+The files from Save Game should be encrypted somehow.
+A Combat System needs to be implemented.
+Awareness should be implemented.
+Skills should be implemented.
+The Journal should be implemented.
+Stats should be implemented.
+Loot Tables should be implemented.
