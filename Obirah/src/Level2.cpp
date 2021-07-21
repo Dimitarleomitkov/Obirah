@@ -1,11 +1,15 @@
 #include "../includes/Gamespace.h"
 #include "../includes/Terrain.h"
 #include "../includes/Npc.h"
+#include "../includes/Enemy.h"
 
 void CreateLevel2 (Gamespace& gamespace)
 {
 	// Despawn the NPCs
 	gamespace.despawn_npcs ();
+
+	// Despawn Enemies
+	gamespace.despawn_enemies ();
 
 	// Clear all tiles
 	gamespace.clear_tiles ();
@@ -925,11 +929,10 @@ void CreateLevel2 (Gamespace& gamespace)
 	dummy_map_tiles[29 * 30 + 28] = BUSH;
 	dummy_map_tiles[29 * 30 + 29] = TREE;
 
-	// NPCs
-
-
 	// Enemies
+    Enemy enemy1 (2, 3, 1, 100, 100, 4, 1, 1, 1, 1, 5, "Target Dummy");
 
+    gamespace.set_enemy (enemy1);
 
 	// Set the map in the gamespace
 	gamespace.set_map_tiles (map_width * map_height, dummy_map_tiles);

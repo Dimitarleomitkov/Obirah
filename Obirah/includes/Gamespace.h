@@ -26,6 +26,9 @@ class Gamespace
         // Function to despawn all NPCs
         void despawn_npcs (void);
 
+        // Function to despawn all Enemies
+        void despawn_enemies (void);
+
         // Function to clear all tiles
         void clear_tiles (void);
 
@@ -40,9 +43,14 @@ class Gamespace
         e_TileType get_original_map_tile (uint16_t index);
         uint8_t get_map_width (void);
         uint8_t get_map_height (void);
+
         NPChar* get_NPCs (void);
         NPChar get_NPC (uint16_t index);
         NPChar get_NPC (uint16_t X, uint16_t Y);
+
+        Enemy get_enemy (uint16_t index);
+        unsigned int get_number_of_enemies (void);
+
         uint16_t get_number_of_npcs (void);
         std::string get_message (void);
         uint16_t get_story_stage (void);
@@ -57,8 +65,12 @@ class Gamespace
         void set_tile (uint16_t index, e_TileType type);
         void set_map_width (unsigned int new_map_width);
         void set_map_height (unsigned int new_map_height);
+
         void set_NPCs (NPChar* NPCs, unsigned int length);
         void set_NPC (NPChar* Npc, uint16_t index);
+
+        void set_enemy (Enemy& E);
+
         void set_message (std::string new_msg);
         void set_story_stage (uint16_t stage);
 

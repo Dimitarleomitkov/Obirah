@@ -26,4 +26,15 @@ void populate_terrain (Gamespace& gamespace)
         index = x_pos * map_width + y_pos;
         gamespace.set_tile (index, NPC);
     }
+
+    Enemy dummy_enemy;
+
+    // Go through every Enemy and populate the tile
+    for (unsigned int i = 0; i < gamespace.get_number_of_enemies(); ++i) {
+        dummy_enemy = gamespace.get_enemy(i);
+        x_pos = dummy_enemy.position_X ();
+        y_pos = dummy_enemy.position_Y ();
+        index = x_pos * map_width + y_pos;
+        gamespace.set_tile (index, ENEMY);
+    }
 }

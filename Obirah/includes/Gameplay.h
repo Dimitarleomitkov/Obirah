@@ -42,6 +42,7 @@ bool Door_collide (e_Directions direction, Gamespace& gamespace);
 bool find_key (Gamespace& gamespace);
 bool Road_collide (e_Directions direction, Gamespace& gamespace);
 bool NPC_collide (e_Directions direction, Gamespace& gamespace);
+bool Enemy_collide (e_Directions direction, Gamespace& gamespace);
 
 void Nira_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
 void Jack_1_window (NPChar& dummy_NPC, Gamespace& gamespace);
@@ -59,5 +60,6 @@ void Craftables_window (Player& dummy_player);
 void Equipment_window (Player& dummy_player);
 
 e_Commands restart_game (Gamespace& gamespace);
+void print_player_stats (Player& dummy_player);
 
 #endif // GAMEPLAY_H

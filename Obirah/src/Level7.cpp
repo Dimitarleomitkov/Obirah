@@ -7,6 +7,9 @@ void CreateLevel7 (Gamespace& gamespace)
     // Despawn the NPCs
 	gamespace.despawn_npcs ();
 
+	// Despawn Enemies
+	gamespace.despawn_enemies ();
+
 	// Clear all tiles
 	gamespace.clear_tiles ();
 

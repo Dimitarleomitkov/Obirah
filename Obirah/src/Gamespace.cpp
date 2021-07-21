@@ -158,6 +158,11 @@ void Gamespace::despawn_npcs (void)
 
 }
 
+void Gamespace::despawn_enemies (void)
+{
+    enemies.clear ();
+}
+
 void Gamespace::clear_tiles (void)
 {
     if (map_tiles != nullptr) {
@@ -245,6 +250,16 @@ NPChar Gamespace::get_NPC (uint16_t X, uint16_t Y)
     return dummy;
 }
 
+Enemy Gamespace::get_enemy (uint16_t index)
+{
+    return enemies[index];
+}
+
+unsigned int Gamespace::get_number_of_enemies (void)
+{
+    return enemies.size ();
+}
+
 uint16_t Gamespace::get_number_of_npcs (void)
 {
     return number_of_npcs;
@@ -319,6 +334,11 @@ void Gamespace::set_NPCs (NPChar* NPCs, unsigned int length)
 void Gamespace::set_NPC (NPChar* Npc, uint16_t index)
 {
     npcs[index] = *Npc;
+}
+
+void Gamespace::set_enemy (Enemy& E)
+{
+    enemies.push_back (E);
 }
 
 void Gamespace::set_message (std::string new_msg)

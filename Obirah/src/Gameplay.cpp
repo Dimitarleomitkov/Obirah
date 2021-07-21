@@ -289,19 +289,17 @@ bool check_collision (e_Directions direction, Gamespace& gamespace)
     // Handle the collision
     switch (collision_tile) {
         case EMPTY:
-            return Empty_collide(direction, gamespace);
+            return Empty_collide (direction, gamespace);
         case PLAYER:
             // Something has gone terribly wrong
             break;
         case NPC:
-            NPC_collide(direction, gamespace);
+            NPC_collide (direction, gamespace);
             return true;
         case ENEMY:
-
-            return true;
+            return Enemy_collide (direction, gamespace);
         case DOOR:
-            Door_collide (direction, gamespace);
-            return true;
+            return Door_collide (direction, gamespace);
         case GATE:
             Gate_collide (direction, gamespace);
             return true;
@@ -385,9 +383,8 @@ Player_Options:
         clear_screen ();
 
         // Name of the Player, HP / max HP and XP / XP for next level
-        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
-        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
-        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl;
+        print_player_stats (dummy_player);
+        std::cout << std::endl;
 
         // Player options
         for (i = 0; i < selector_position; ++i) {
@@ -436,10 +433,8 @@ Inventory_Options:
         clear_screen ();
 
         // Name of the Player, HP / max HP and XP / XP for next level
-        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
-        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
-        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
-        << "Inventory:" << std::endl;
+        print_player_stats (dummy_player);
+        std::cout << "Inventory:" << std::endl << std::endl;
 
         // Player options
         for (i = 0; i < selector_position; ++i) {
@@ -499,10 +494,8 @@ Consumables_Options:
         clear_screen ();
 
         // Name of the Player, HP / max HP and XP / XP for next level
-        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
-        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
-        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
-        << "Inventory->Consumables:" << std::endl;
+        print_player_stats (dummy_player);
+        std::cout << "Inventory->Consumables:" << std::endl << std::endl;
 
         // Player options
         for (i = 0; i < selector_position; ++i) {
@@ -551,10 +544,8 @@ Craftables_Options:
         clear_screen ();
 
         // Name of the Player, HP / max HP and XP / XP for next level
-        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
-        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
-        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
-        << "Inventory->Craftables:" << std::endl;
+        print_player_stats (dummy_player);
+        std::cout << "Inventory->Craftables:" << std::endl << std::endl;
 
         // Player options
         for (i = 0; i < selector_position; ++i) {
@@ -599,10 +590,8 @@ Equipment_Options:
         clear_screen ();
 
         // Name of the Player, HP / max HP and XP / XP for next level
-        std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
-        << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
-        << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl
-        << "Inventory->Equipment:" << std::endl;
+        print_player_stats (dummy_player);
+        std::cout << "Inventory->Equipment:" << std::endl << std::endl;
 
         // Player options
         for (i = 0; i < selector_position; ++i) {
@@ -631,4 +620,11 @@ e_Commands restart_game (Gamespace& gamespace)
     gamespace = new_gamespace;
 
     return GAME_MENU;
+}
+
+void print_player_stats (Player& dummy_player)
+{
+    std::cout << dummy_player.get_name() << " | " << dummy_player.get_level () << " | "
+    << "HP: " << dummy_player.get_Health () << "/" << dummy_player.get_maxHealth () << " | "
+    << "XP: " << dummy_player.get_xp () << "/" << dummy_player.get_xp_next_level () << std::endl;
 }

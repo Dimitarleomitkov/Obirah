@@ -1,6 +1,7 @@
 The name of the hero should not contain certain symbols.
-Level 6 and 7 need to be made playable.
-Enemies need to be introduced into the game.
+There needs to be a diversity of enemies in the game.
+The Enemies need to be spawned on random EMPTY locations.
+The Enemies need to have random stats, given a baseline and diviation.
 Save Game should be revisited.
 Load Game should be revisited.
 The files from Save Game should be encrypted somehow.
@@ -10,3 +11,4 @@ Skills should be implemented.
 The Journal should be implemented.
 Stats should be implemented.
 Loot Tables should be implemented.
+Enemy Tables should be implemented.
