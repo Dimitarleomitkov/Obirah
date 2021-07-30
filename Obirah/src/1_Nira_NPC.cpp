@@ -105,7 +105,15 @@ std::string set_player_name_event ()
     std::string new_name;
     std::getline (std::cin, new_name);
 
-    new_name.erase(std::remove(new_name.begin(), new_name.end(), ','), new_name.end());
+    std::string parsed_name = "";
 
-    return new_name;
+    int i = 0;
+    while (new_name[i] != '\0') {
+        if (isalnum(new_name[i])) {
+            parsed_name += new_name[i];
+        }
+        ++i;
+    }
+
+    return parsed_name;
 }

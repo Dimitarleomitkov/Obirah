@@ -1,4 +1,3 @@
-The name of the hero should not contain certain symbols.
 There needs to be a diversity of enemies in the game.
 The Enemies need to be spawned on random EMPTY locations.
 The Enemies need to have random stats, given a baseline and diviation.
@@ -12,6 +11,10 @@ The Journal should be implemented.
 Stats should be implemented.
 Loot Tables should be implemented.
 Enemy Tables should be implemented.
+Skill Tables should be implemented.
+Attack Tables should be implemented.
+Buff Tables should be implemented.
+Defense Tables should be implemented.
 Enable reordering of the list of attacks with Shift + W and Shift + S in the "C" menu.
 Implement Combat/Attacks.
 Implement Combat/Buffs.
