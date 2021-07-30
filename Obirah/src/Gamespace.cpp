@@ -255,6 +255,20 @@ Enemy Gamespace::get_enemy (uint16_t index)
     return enemies[index];
 }
 
+Enemy Gamespace::get_enemy (uint16_t X, uint16_t Y)
+{
+    for (unsigned int i = 0; i < get_number_of_enemies(); ++i) {
+        if (X == enemies[i].position_X()) {
+            if (Y == enemies[i].position_Y()) {
+                return enemies[i];
+            }
+        }
+    }
+
+    Enemy dummy;
+    return dummy;
+}
+
 unsigned int Gamespace::get_number_of_enemies (void)
 {
     return enemies.size ();

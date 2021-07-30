@@ -62,4 +62,10 @@ void Equipment_window (Player& dummy_player);
 e_Commands restart_game (Gamespace& gamespace);
 void print_player_stats (Player& dummy_player);
 
+void combat_window (Enemy& enemy, Gamespace& gamespace);
+void battle_setup (Enemy& enemy, Player& dummy_player);
+void Choose_attack (Player& dummy_player);
+
+void combat_options (Player& dummy_player);
+
 #endif // GAMEPLAY_H

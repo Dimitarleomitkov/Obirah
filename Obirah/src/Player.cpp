@@ -1,4 +1,5 @@
 #include "../includes/Player.h"
+#include "../includes/Attack.h"
 
 // ctor
 Player::Player()
@@ -15,6 +16,8 @@ Player::Player()
     xp = 0;
     xp_next_level = 10;
     name = "Unknown";
+    Attack hit ("Hit", 1, 0);
+    add_attack (hit);
 }
 
 // dtor
@@ -232,6 +235,26 @@ uint64_t Player::get_xp_next_level (void)
 Inventory Player::get_inventory (void)
 {
     return inventory;
+}
+
+unsigned int Player::get_number_of_attacks (void)
+{
+    return attacks.size();
+}
+
+Attack Player::get_attack (unsigned int index)
+{
+    if (index < 0 || index >= attacks.size()) {
+        Attack dummy_attack;
+        return dummy_attack;
+    }
+
+    return attacks[index];
+}
+
+void Player::add_attack (Attack& new_attack)
+{
+    attacks.push_back(new_attack);
 }
 
 void Player::inventory_add_consumable (Consumable& item)

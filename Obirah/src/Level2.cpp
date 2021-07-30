@@ -931,8 +931,10 @@ void CreateLevel2 (Gamespace& gamespace)
 
 	// Enemies
     Enemy enemy1 (2, 3, 1, 100, 100, 4, 1, 1, 1, 1, 5, "Target Dummy");
+    Enemy enemy2 (26, 17, 1, 300, 300, 4, 1, 1, 1, 1, 5, "Evil Target Dummy");
 
     gamespace.set_enemy (enemy1);
+    gamespace.set_enemy (enemy2);
 
 	// Set the map in the gamespace
 	gamespace.set_map_tiles (map_width * map_height, dummy_map_tiles);

@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string>
 #include "Inventory.h"
+#include "Attack.h"
 
 class Player
 {
@@ -66,6 +67,11 @@ class Player
         std::string get_name (void);
         Inventory get_inventory (void);
 
+        unsigned int get_number_of_attacks (void);
+        Attack get_attack (unsigned int index);
+
+        void add_attack (Attack& new_attack);
+
         void inventory_add_consumable (Consumable& item);
         void inventory_add_craftable (Craftable& item);
         void inventory_add_equipment (Equipment& item);
@@ -87,6 +93,9 @@ class Player
         uint64_t xp;
         uint64_t xp_next_level;
         Inventory inventory;
+
+        // Attacks
+        std::vector<Attack> attacks;
 
         // Name
         std::string name;

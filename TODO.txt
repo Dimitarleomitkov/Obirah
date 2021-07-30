@@ -12,3 +12,8 @@ The Journal should be implemented.
 Stats should be implemented.
 Loot Tables should be implemented.
 Enemy Tables should be implemented.
+Enable reordering of the list of attacks with Shift + W and Shift + S in the "C" menu.
+Implement Combat/Attacks.
+Implement Combat/Buffs.
+Implement Combat/Defenses.
+Implement Combat/Consumables.

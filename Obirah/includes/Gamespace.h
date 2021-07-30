@@ -49,6 +49,7 @@ class Gamespace
         NPChar get_NPC (uint16_t X, uint16_t Y);
 
         Enemy get_enemy (uint16_t index);
+        Enemy get_enemy (uint16_t X, uint16_t Y);
         unsigned int get_number_of_enemies (void);
 
         uint16_t get_number_of_npcs (void);
