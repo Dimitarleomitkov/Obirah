@@ -3,12 +3,13 @@
 
 #include <stdint.h>
 #include <string>
+#include "Terrain.h"
 
 class Enemy
 {
     public:
-        Enemy();
-        Enemy(uint16_t X,
+        Enemy ();
+        Enemy (uint16_t X,
                 uint16_t Y,
                 uint16_t level,
                 uint64_t health,
@@ -22,7 +23,7 @@ class Enemy
                 std::string name);
 
         Enemy (const Enemy& old_enemy);
-        virtual ~Enemy();
+        virtual ~Enemy ();
 
         // Getters
         uint16_t position_X (void);
@@ -68,5 +69,8 @@ class Enemy
         uint16_t awareness;
         std::string name;
 };
+
+Enemy enemy_rng_pos (e_TileType* dummy_tiles, uint8_t map_width, uint8_t map_height, uint16_t map_level);
+Enemy choose_enemy (uint16_t enemy_x, uint16_t enemy_y, uint16_t map_level);
 
 #endif // ENEMY_H

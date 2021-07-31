@@ -930,11 +930,25 @@ void CreateLevel2 (Gamespace& gamespace)
 	dummy_map_tiles[29 * 30 + 29] = TREE;
 
 	// Enemies
-    Enemy enemy1 (2, 3, 1, 100, 100, 4, 1, 1, 1, 1, 5, "Target Dummy");
-    Enemy enemy2 (26, 17, 1, 300, 300, 4, 1, 1, 1, 1, 5, "Evil Target Dummy");
+	// How many enemies should we spawn
+	uint16_t number_of_enemies = rand() % 10 + 1;
 
-    gamespace.set_enemy (enemy1);
-    gamespace.set_enemy (enemy2);
+	int i;
+	Enemy dummy;
+
+	// Spawn the enemies
+	for (i = 0; i < number_of_enemies; ++i) {
+        dummy = enemy_rng_pos(dummy_map_tiles, map_width, map_height, gamespace.get_map_level());
+        // Make sure that enemies do not spawn on top of each other
+        dummy_map_tiles[dummy.position_X() * map_width + dummy.position_Y()] = ENEMY;
+        gamespace.set_enemy(dummy);
+	}
+	for (i = 0; i < map_width * map_height; ++i) {
+        if (dummy_map_tiles[i] == ENEMY) {
+            // Fix the tiles
+            dummy_map_tiles[i] = EMPTY;
+        }
+    }
 
 	// Set the map in the gamespace
 	gamespace.set_map_tiles (map_width * map_height, dummy_map_tiles);

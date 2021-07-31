@@ -1,7 +1,8 @@
 #include "../includes/Enemy.h"
+#include "../includes/EnemyLUT.h"
 
 //ctors
-Enemy::Enemy()
+Enemy::Enemy ()
 {
     level = 0;
     health = 1;
@@ -15,7 +16,7 @@ Enemy::Enemy()
     name = "???";
 }
 
-Enemy::Enemy(uint16_t X = 0,
+Enemy::Enemy (uint16_t X = 0,
                 uint16_t Y = 0,
                 uint16_t Level = 0,
                 uint64_t Health = 1,
@@ -59,7 +60,7 @@ Enemy::Enemy (const Enemy& old_enemy)
     name = old_enemy.name;
 }
 
-Enemy::~Enemy()
+Enemy::~Enemy ()
 {
     //dtor
 }
@@ -184,4 +185,69 @@ void Enemy::set_Awareness (uint16_t Awareness)
 void Enemy::set_name (std::string Name)
 {
     name = Name;
+}
+
+Enemy enemy_rng_pos (e_TileType* dummy_tiles, uint8_t map_width, uint8_t map_height, uint16_t map_level)
+{
+    unsigned int number_of_tiles = map_width * map_height;
+    unsigned int number_of_empty_tiles = 0;
+
+    unsigned int i;
+    for (i = 0; i < number_of_tiles; ++i) {
+        if (dummy_tiles[i] == EMPTY) {
+            ++number_of_empty_tiles;
+        }
+    }
+
+    unsigned int empty_tiles[number_of_empty_tiles];
+
+    unsigned int j = 0;
+    for (i = 0; i < number_of_tiles; ++i) {
+        if (dummy_tiles[i] == EMPTY) {
+            empty_tiles[j] = i;
+            ++j;
+        }
+    }
+
+    uint16_t random_map_index = rand() % number_of_empty_tiles;
+    uint16_t enemy_x = empty_tiles[random_map_index] / map_width;
+    uint16_t enemy_y = empty_tiles[random_map_index] % map_width;
+
+
+    Enemy enemy = choose_enemy (enemy_x, enemy_y, map_level);
+
+    return enemy;
+}
+
+Enemy choose_enemy (uint16_t enemy_x, uint16_t enemy_y, uint16_t map_level)
+{
+    uint16_t enemy_type = 0;
+    switch (map_level) {
+        case 2:
+            {
+                if (rand () % 100 < 10) {
+                    enemy_type = 5; // Bear
+                } else if (rand () % 100 < 30) {
+                    enemy_type = 4; // Wolf
+                } else if (rand () % 100 < 50) {
+                    enemy_type = 3; // Deer
+                } else {
+                    enemy_type = 2; // Rabbit
+                }
+                Enemy new_enemy(enemy_x, enemy_y, enemy_LUT[enemy_type].get_Level(), enemy_LUT[enemy_type].get_Health(), enemy_LUT[enemy_type].get_Max_Health(),
+                                enemy_LUT[enemy_type].get_Defense(), enemy_LUT[enemy_type].get_Attack(), enemy_LUT[enemy_type].get_Strength(),
+                                enemy_LUT[enemy_type].get_Intelligence(), enemy_LUT[enemy_type].get_Agility(), enemy_LUT[enemy_type].get_Awareness(),
+                                enemy_LUT[enemy_type].get_name());
+                return new_enemy;
+            }
+        default:
+            {
+                Enemy new_enemy(enemy_x, enemy_y, enemy_LUT[enemy_type].get_Level(), enemy_LUT[enemy_type].get_Health(), enemy_LUT[enemy_type].get_Max_Health(),
+                                enemy_LUT[enemy_type].get_Defense(), enemy_LUT[enemy_type].get_Attack(), enemy_LUT[enemy_type].get_Strength(),
+                                enemy_LUT[enemy_type].get_Intelligence(), enemy_LUT[enemy_type].get_Agility(), enemy_LUT[enemy_type].get_Awareness(),
+                                enemy_LUT[enemy_type].get_name());
+                return new_enemy;
+            }
+            break;
+    }
 }

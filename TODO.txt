@@ -1,5 +1,4 @@
-There needs to be a diversity of enemies in the game.
-The Enemies need to be spawned on random EMPTY locations.
+Revisit the Map Generator.
 The Enemies need to have random stats, given a baseline and diviation.
 Save Game should be revisited.
 Load Game should be revisited.
@@ -9,14 +8,18 @@ Awareness should be implemented.
 Skills should be implemented.
 The Journal should be implemented.
 Stats should be implemented.
-Loot Tables should be implemented.
-Enemy Tables should be implemented.
+Item Tables should be implemented.
 Skill Tables should be implemented.
 Attack Tables should be implemented.
 Buff Tables should be implemented.
 Defense Tables should be implemented.
-Enable reordering of the list of attacks with Shift + W and Shift + S in the "C" menu.
+Enable reordering of the list of attacks/consumables/defenses/buffs with Shift + W and Shift + S in the "C" menu.
 Implement Combat/Attacks.
 Implement Combat/Buffs.
 Implement Combat/Defenses.
 Implement Combat/Consumables.
+Spawn enemies in Level 3.
+Spawn enemies in Level 4.
+Spawn enemies in Level 5.
+Spawn enemies in Level 6.
+Make Enemy AI.
