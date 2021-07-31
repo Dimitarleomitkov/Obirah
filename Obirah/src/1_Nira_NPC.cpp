@@ -103,11 +103,35 @@ std::string set_player_name_event ()
 
     // Get input from user
     std::string new_name;
-    std::getline (std::cin, new_name);
+
+    char c = 'a';
+    int i = 0;
+    while (true) {
+        c = getch();
+        if (c == '\b') {
+            new_name += "\b \b";
+            std::cout << "\b \b";
+            --i;
+        } else {
+            if (c == '\n' || c == '\r') {
+                if (i > 0) {
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            if (i >= 30) {
+                continue;
+            }
+            new_name += c;
+            std::cout << c;
+            ++i;
+        }
+    }
 
     std::string parsed_name = "";
 
-    int i = 0;
+    i = 0;
     while (new_name[i] != '\0') {
         if (isalnum(new_name[i])) {
             parsed_name += new_name[i];
